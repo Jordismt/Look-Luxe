@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "name": "Corte Profesional",
+    "price": 20,
+    "img": "img/corte.jpg",
+    "description": "Corte adaptado a tu estilo, asesoría personalizada incluida."
+  },
+  {
+    "id": 2,
+    "name": "Coloración Premium",
+    "price": 35,
+    "img": "img/coloracion.jpg",
+    "description": "Color intenso, duradero y con productos de alta calidad."
+  },
+  {
+    "id": 3,
+    "name": "Tratamiento Capilar Luxe",
+    "price": 25,
+    "img": "img/tratamiento.jpg",
+    "description": "Repara y revitaliza tu cabello con nuestro tratamiento estrella."
+  },
+  {
+    "id": 4,
+    "name": "Peinado Especial",
+    "price": 18,
+    "img": "img/peinado.jpg",
+    "description": "Peinados profesionales para ocasiones especiales."
+  }
+]

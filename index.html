@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Look&Luxe – Peluquería Profesional</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- AOS Animations -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark py-3 fixed-top shadow-sm" style="background:black;">
+        <div class="container">
+            <a class="navbar-brand fw-bold" style="font-size: 1.7rem;"><img id="logoImg" src="img/logo.PNG" style="width: 180px;"></a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navMenu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a href="#services" class="nav-link">Servicios</a></li>
+                    <li class="nav-item"><a href="#products" class="nav-link">Productos</a></li>
+                    <li class="nav-item"><a href="#booking" class="nav-link">Pedir Cita</a></li>
+                    <li class="nav-item"><a href="carrito.html" class="nav-link">Carrito</a></li>
+                    <button id="themeToggle" class="btn btn-outline-warning ms-3">Tema</button>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- HERO -->
+    <header class="text-light d-flex align-items-center justify-content-center"
+        style="height:100vh; background:url('img/hero_img.JPG') center/cover no-repeat; background-attachment:fixed;">
+        <div class="text-center" data-aos="fade-up">
+            <h1 class="display-3 fw-bold">Look&Luxe</h1>
+            <p class="lead mb-4">Donde la elegancia y el estilo se encuentran</p>
+            <a href="#booking" class="btn btn-light btn-lg px-5 py-3">Pedir Cita</a>
+        </div>
+    </header>
+
+
+    <!-- SERVICIOS -->
+    <section id="services" class="py-5">
+        <div class="container">
+
+            <h2 class="text-center mb-5 fw-bold" data-aos="fade-up">Nuestros Servicios</h2>
+
+            <div class="row g-4">
+
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card shadow-sm">
+                        <img src="img/corte.jpg" class="card-img-top" alt="">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">Corte</h5>
+                            <p>Corte profesional adaptado a tu estilo.</p>
+                            <span class="fw-bold">20€</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card shadow-sm">
+                        <img src="img/coloracion.jpg" class="card-img-top" alt="">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">Coloración</h5>
+                            <p>Color vibrante, duradero y profesional.</p>
+                            <span class="fw-bold">35€</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card shadow-sm">
+                        <img src="img/tratamiento.jpg" class="card-img-top" alt="">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">Tratamiento Capilar</h5>
+                            <p>Recupera el brillo y la salud de tu cabello.</p>
+                            <span class="fw-bold">25€</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- PRODUCTOS -->
+    <section id="products" class="py-5 bg-light">
+        <div class="container">
+
+            <h2 class="text-center mb-5 fw-bold" data-aos="fade-up">Productos Profesionales</h2>
+
+            <div id="product-list" class="row g-4" data-aos="fade-up" data-aos-delay="100">
+                <!-- JS rellenará los productos -->
+            </div>
+
+            <div class="text-center mt-4">
+                <a href="carrito.html" class="btn btn-dark px-4 py-2">Ver Carrito</a>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- FORMULARIO CITA -->
+<section id="booking" class="py-5">
+    <div class="container">
+        <h2 class="text-center mb-4 fw-bold text-warning" data-aos="fade-up">Pedir Cita</h2>
+
+        <div class="row justify-content-center">
+            <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
+
+                <form id="bookingForm" class="p-4 shadow bg-black rounded mb-4">
+                    <div class="mb-3">
+                        <label class="form-label">Nombre</label>
+                        <input type="text" class="form-control bg-dark text-light" id="bookingName" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-control bg-dark text-light" id="bookingEmail" required placeholder="ejemplo@correo.com">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Teléfono</label>
+                        <input type="tel" class="form-control bg-dark text-light" id="bookingPhone" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Selecciona servicio</label>
+                        <select id="serviceSelect" class="form-select bg-dark text-light" required>
+                            <option value="" disabled selected>Elige un servicio...</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Fecha</label>
+                        <input type="date" class="form-control bg-dark text-light" id="bookingDate" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Hora</label>
+                        <select id="bookingTime" class="form-select bg-dark text-light" required>
+                            <option value="" disabled selected>Selecciona hora</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-dark w-100 py-2">Confirmar Cita</button>
+                </form>
+
+                <div id="bookingSuccess" class="alert alert-success mt-3 d-none"></div>
+
+                <h5 class="text-warning mt-4">Citas existentes:</h5>
+                <ul id="bookingList" class="list-group mb-5"></ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+    <!-- FOOTER -->
+    <footer class="text-center py-4 text-light" style="background:black;">
+        © 2025 Look&Luxe • Elegancia y estilo
+    </footer>
+
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- AOS Animations -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            once: true,
+            duration: 800,
+            offset: 80
+        });
+    </script>
+
+    <script src="js/main.js"></script>
+
+</body>
+
+</html>
