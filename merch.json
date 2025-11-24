@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "name": "Taza Look&Luxe",
+    "description": "Taza cerámica premium con el logo oficial Look&Luxe.",
+    "price": 12.99,
+    "colors": ["Blanco", "Negro"],
+    "image": "img/merch/taza.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Bolsa de Tela Look&Luxe",
+    "description": "Bolsa ecológica de tela resistente con diseño exclusivo.",
+    "price": 9.99,
+    "colors": ["Blanco", "Negro"],
+    "image": "img/merch/bolsa.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Libreta Look&Luxe",
+    "description": "Libreta A5 con acabado premium y portada del salón.",
+    "price": 8.50,
+    "colors": ["Blanco", "Negro"],
+    "image": "img/merch/libreta.jpg"
+  }
+]
