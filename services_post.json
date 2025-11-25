@@ -4,6 +4,7 @@
     "name": "Extensiones de Cabello",
     "description": "Añade longitud y volumen a tu cabello con nuestras extensiones de alta calidad.",
     "price": 120,
+    "img": "img/img_srv/extensiones.jpg",
     "duration": 90
   },
   {
@@ -11,6 +12,7 @@
     "name": "Pelucas Personalizadas",
     "description": "Pelucas hechas a medida para adaptarse perfectamente a tu estilo y rostro.",
     "price": 250,
+    "img": "img/img_srv/pelucas.jpg",
     "duration": 120
   },
   {
@@ -18,6 +20,7 @@
     "name": "Prótesis Capilares",
     "description": "Soluciones de posticería para pérdida de cabello parcial o total.",
     "price": 300,
+    "img": "img/img_srv/protesis.jpg",
     "duration": 150
   },
   {
@@ -25,6 +28,7 @@
     "name": "Mantenimiento de Extensiones",
     "description": "Cuidado y mantenimiento profesional para tus extensiones.",
     "price": 50,
+    "img": "img/img_srv/mant_ext.jpg",
     "duration": 60
   }
 ]

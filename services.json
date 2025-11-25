@@ -4,7 +4,7 @@
     "name": "Corte Profesional",
     "price": 20,
     "duration": 30,
-    "img": "img/corte.jpg",
+    "img": "img/img_srv/corte_pelo_masc.jpg",
     "description": "Corte adaptado a tu estilo, asesoría personalizada incluida."
   },
   {
@@ -12,7 +12,7 @@
     "name": "Coloración Premium",
     "price": 35,
     "duration": 60,
-    "img": "img/coloracion.jpg",
+    "img": "img/img_srv/coloracion.jpg",
     "description": "Color intenso, duradero y con productos de alta calidad."
   },
   {
@@ -20,7 +20,7 @@
     "name": "Tratamiento Capilar Luxe",
     "price": 25,
     "duration": 60,
-    "img": "img/tratamiento.jpg",
+    "img": "img/img_srv/trat_capilar.jpg",
     "description": "Repara y revitaliza tu cabello con nuestro tratamiento estrella."
   },
   {
@@ -28,7 +28,7 @@
     "name": "Peinado Especial",
     "price": 18,
     "duration": 45,
-    "img": "img/peinado.jpg",
+    "img": "img/img_srv/peinado_especial.jpg",
     "description": "Peinados profesionales para ocasiones especiales."
   },
   {
@@ -36,7 +36,7 @@
     "name": "Mechas",
     "price": 50,
     "duration": 180,
-    "img": "img/mechas.jpg",
+    "img": "img/img_srv/mechas.jpg",
     "description": "Mechas profesionales, duración entre 2 y 4 horas según longitud y técnica."
   }
 ]

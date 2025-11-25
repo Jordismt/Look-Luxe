@@ -3,7 +3,7 @@
     "id": 1,
     "name": "Champú Nutritivo",
     "price": 12.00,
-    "img": "img/prod1.jpg",
+    "img": "img/img_prd/champu_nutri.webp",
     "description": "Champú hidratante para cabellos secos y castigados.",
     "stock": 10
   },
@@ -11,7 +11,7 @@
     "id": 2,
     "name": "Acondicionador Reparador",
     "price": 14.00,
-    "img": "img/prod2.jpg",
+    "img": "img/img_prd/acondicionador.jpg",
     "description": "Repara las puntas abiertas y aporta suavidad extrema.",
     "stock": 8
   },
@@ -19,7 +19,7 @@
     "id": 3,
     "name": "Aceite Capilar Luxe",
     "price": 18.00,
-    "img": "img/prod3.jpg",
+    "img": "img/img_prd/aceite_cap.jpg",
     "description": "Aceite premium que aporta brillo y reduce el frizz.",
     "stock": 5
   },
@@ -27,7 +27,7 @@
     "id": 4,
     "name": "Mascarilla Regeneradora",
     "price": 16.50,
-    "img": "img/prod4.jpg",
+    "img": "img/img_prd/masc_reg.webp",
     "description": "Tratamiento profundo para revitalizar el cabello.",
     "stock": 7
   },
@@ -35,7 +35,7 @@
     "id": 5,
     "name": "Spray Protector Térmico",
     "price": 11.90,
-    "img": "img/prod5.jpg",
+    "img": "img/img_prd/spray.webp",
     "description": "Protege el cabello del calor hasta 230ºC.",
     "stock": 12
   }
