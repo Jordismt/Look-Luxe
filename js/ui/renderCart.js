@@ -23,32 +23,54 @@ export async function renderCart() {
 
   state.cart.forEach(item => {
     let p;
+    let color = null;
+
+    // -------------------------
+    //   DETECTAR MERCH + COLOR
+    // -------------------------
     if (item.id.startsWith("merch-")) {
-      const merchId = item.id.replace("merch-", "");
+      const parts = item.id.split("-"); // merch - ID - COLOR...
+      const merchId = parts[1];
+      color = parts.slice(2).join("-"); // soporta colores con guiones
+
       p = state.merch.find(x => String(x.id) === merchId);
     } else {
+      // Productos normales
       p = state.products.find(x => String(x.id) === String(item.id));
     }
+
     if (!p) return;
 
     total += (Number(p.price) || 0) * (item.quantity || 0);
 
+    // -------------------------
+    //   RENDER ITEM DEL CARRITO
+    // -------------------------
     const row = document.createElement("div");
     row.className = "d-flex justify-content-between align-items-center border-bottom py-2";
+
     row.innerHTML = `
-      <div><strong>${p.name}</strong><br>${item.quantity} x ${p.price}€</div>
+      <div>
+        <strong>${p.name}</strong><br>
+        ${color ? `Color: <strong>${color}</strong><br>` : ""}
+        ${item.quantity} x ${p.price}€
+      </div>
+
       <div>
         <button class="btn btn-sm btn-secondary me-2" data-action="dec" data-id="${item.id}">-</button>
         <button class="btn btn-sm btn-secondary me-2" data-action="inc" data-id="${item.id}">+</button>
         <button class="btn btn-sm btn-danger" data-action="remove" data-id="${item.id}">Eliminar</button>
       </div>
     `;
+
     container.appendChild(row);
   });
 
   totalEl.textContent = total.toFixed(2) + "€";
 
-  // Botones incrementar/decrementar/eliminar
+  // ------------------------------------------------
+  //  BOTONES DE ACCIONES (INC, DEC, REMOVE)
+  // ------------------------------------------------
   container.querySelectorAll("button[data-action]").forEach(btn => {
     btn.addEventListener("click", () => {
       const id = btn.dataset.id;
@@ -56,8 +78,10 @@ export async function renderCart() {
 
       if (btn.dataset.action === "remove") {
         state.cart = state.cart.filter(c => String(c.id) !== String(id));
+
       } else if (btn.dataset.action === "inc") {
         if (idx >= 0) state.cart[idx].quantity++;
+
       } else if (btn.dataset.action === "dec") {
         if (idx >= 0) state.cart[idx].quantity = Math.max(1, state.cart[idx].quantity - 1);
       }
@@ -67,7 +91,9 @@ export async function renderCart() {
     });
   });
 
-  // Botón de checkout (finalizar compra)
+  // ------------------------------------------------
+  //  BOTÓN DE FINALIZAR COMPRA
+  // ------------------------------------------------
   const checkoutBtn = $("checkout-btn");
   if (checkoutBtn) {
     checkoutBtn.onclick = () => {
@@ -82,7 +108,9 @@ export async function renderCart() {
     };
   }
 
-  // Botón vaciar carrito
+  // ------------------------------------------------
+  //  BOTÓN DE VACIAR CARRITO
+  // ------------------------------------------------
   const clearBtn = $("clear-cart-btn");
   if (clearBtn) {
     clearBtn.onclick = () => {

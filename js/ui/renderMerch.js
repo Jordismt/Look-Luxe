@@ -12,7 +12,7 @@ export async function renderMerch() {
     container.innerHTML = merch.map(item => `
       <div class="col-md-4">
         <div class="card shadow-sm">
-          <img src="${item.image}" class="card-img-top" alt="${item.name}">
+          <img src="${item.images[0]}" class="card-img-top" alt="${item.name}">
           <div class="card-body">
             <h5 class="card-title">${item.name}</h5>
             <p class="card-text">${item.description}</p>

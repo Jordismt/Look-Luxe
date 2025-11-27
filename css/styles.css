@@ -1,27 +1,26 @@
 /* =========================================================
-   Look&Luxe – Ultra Premium Dark & Gold Glass UI
+   Look&Luxe – Luxe Hair Glass UI
    ========================================================= */
 
 /* -------------------------
    PALETA / VARIABLES
 ------------------------- */
 :root {
-  --gold: #d4af37;
+  --soft-pink: #f8c8dc;
+  --peach: #ffd1b3;
+  --gold: #ffd700;
   --gold-dark: #b8962f;
-  --gold-soft: #9d8732;
+  --glass-bg: rgba(255,255,255,0.25);
+  --glass-border: rgba(255,255,255,0.3);
+  --text: #333;
+  --text-muted: rgba(51,51,51,0.65);
 
-  --black: #0a0a0a;
-  --black-2: #111;
-  --black-3: #161616;
-
-  --glass-bg: rgba(255,255,255,0.05);
-  --glass-border: rgba(255,255,255,0.08);
-  --text: #f1f1f1;
-  --text-muted: rgba(241,241,241,0.65);
+  --light-bg: #fff7f5;
+  --light-bg-alt: #fff1ed;
 
   --blur: 18px;
-  --radius: 18px;
-  --shadow: 0 20px 60px rgba(0,0,0,0.65);
+  --radius: 20px;
+  --shadow: 0 20px 50px rgba(0,0,0,0.1);
 
   --fast: 0.25s ease;
   --smooth: 0.45s ease;
@@ -35,7 +34,7 @@
 * { margin:0; padding:0; box-sizing:border-box; }
 
 body {
-  background: var(--black);
+  background: var(--light-bg);
   color: var(--text);
   font-family: var(--font);
   line-height: 1.6;
@@ -55,26 +54,35 @@ a {
   padding: 0 1rem;
 }
 
-
 /* -------------------------
    NAVBAR
 ------------------------- */
 .navbar {
-  background: rgba(20,20,20,0.75);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(212,175,55,0.15);
+  background: linear-gradient(
+    135deg,
+    rgba(184, 150, 47, 0.35) ,/* gold-dark más fuerte */
+    rgba(248, 200, 220, 0.25), /* soft-pink translúcido */
+    rgba(255, 209, 179, 0.25),/* peach translúcido */
+    rgba(184, 150, 47, 0.35) /* gold-dark más fuerte */
+      
+  );
+  backdrop-filter: blur(11px);
+  border-bottom: 1px solid rgba(255,215,0,0.25);
   transition: background var(--smooth);
 }
 
+
 .navbar-brand img {
   width: 160px;
-  filter: drop-shadow(0 4px 10px rgba(212,175,55,0.35));
+  filter: drop-shadow(0 4px 10px var(--gold));
+  
 }
 
 .nav-link {
   font-weight: 600;
   padding: .6rem 1rem;
   position: relative;
+  color: var(--text);
 }
 
 .nav-link::after {
@@ -84,14 +92,13 @@ a {
   right: 20%;
   bottom: -4px;
   height: 2px;
-  background: var(--gold);
+  background: var(--peach);
   transform: scaleX(0);
   transition: transform var(--smooth);
 }
 
-.nav-link:hover { color: var(--gold); }
+.nav-link:hover { color: var(--soft-pink); }
 .nav-link:hover::after { transform: scaleX(1); }
-
 
 /* -------------------------
    HERO
@@ -103,105 +110,129 @@ header {
   align-items:center;
   justify-content:center;
   text-align:center;
+  overflow: hidden;
+  background: var(--light-bg-alt);
 }
 
 header::before {
   content:"";
   position:absolute;
   inset:0;
-  background:url('../img/hero_img.JPG') center/cover;
-  opacity: .28;
+  background: url('../img/hero_img.JPG') center/cover no-repeat;
+  opacity: 0.15;
   animation: zoom 40s linear infinite alternate;
 }
 
 @keyframes zoom {
   from { transform: scale(1); }
-  to   { transform: scale(1.1); }
+  to   { transform: scale(1.05); }
 }
 
 .hero-content {
   position: relative;
   z-index: 5;
-  padding: 2.5rem;
-  border-radius: 24px;
-  background: rgba(255,255,255,0.06);
-  backdrop-filter: blur(18px);
+  padding: 3rem;
+  border-radius: var(--radius);
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--blur));
   border: 1px solid var(--glass-border);
   box-shadow: var(--shadow);
+  animation: glow 3s ease-in-out infinite alternate;
 }
 
+@keyframes glow {
+  0% { box-shadow: 0 0 15px var(--soft-pink); }
+  50% { box-shadow: 0 0 20px var(--peach); }
+  100% { box-shadow: 0 0 18px var(--gold); }
+}
 
 /* -------------------------
    SECCIONES
 ------------------------- */
 section {
   padding: 5rem 0;
+  background: var(--light-bg);
 }
-
-#products,
-#team,
-#offers,
-#testimonials {
-  background: var(--black-3);  /* ADIÓS el horrible blanco */
-}
-
 
 /* -------------------------
    TARJETAS
 ------------------------- */
 .card {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(212,175,55,0.18);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
   border-radius: var(--radius);
   overflow: hidden;
   transition: transform var(--smooth), box-shadow var(--smooth);
 }
 
 .card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 28px 80px rgba(0,0,0,0.75);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.1), 0 0 10px var(--soft-pink);
 }
 
 .card img {
   height: 240px;
   object-fit: cover;
+  transition: transform 0.5s ease;
 }
 
+.card img:hover {
+  transform: scale(1.03);
+}
 
 /* -------------------------
    FORMULARIOS
 ------------------------- */
 form {
-  background: rgba(255,255,255,0.04);
+  background: var(--glass-bg);
   border: 1px solid var(--glass-border);
   border-radius: var(--radius);
   padding: 2rem;
+  backdrop-filter: blur(var(--blur));
+  color: white;
 }
 
 input, select {
-  background: rgba(15,15,15,0.65);
-  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.7);
+  border: 1px solid rgba(255,215,0,0.15);
   color: var(--text);
   border-radius: 12px;
   padding: .8rem 1rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 input:focus, select:focus {
-  border-color: var(--gold);
-  box-shadow: 0 0 12px rgba(212,175,55,0.3);
+  border-color: var(--soft-pink);
+  box-shadow: 0 0 10px var(--soft-pink);
 }
 
+/* -------------------------
+   BOTONES
+------------------------- */
+button, .btn {
+  background: linear-gradient(135deg, var(--soft-pink), var(--peach));
+  border: none;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 12px;
+  padding: 0.6rem 1.2rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+button:hover, .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 10px var(--soft-pink), 0 0 15px var(--peach);
+}
 
 /* -------------------------
    FOOTER
 ------------------------- */
 footer {
-  background: #000;
+  background: var(--light-bg-alt);
   padding: 2rem;
-  color: var(--gold);
-  border-top: 1px solid rgba(212,175,55,0.12);
+  color: var(--gold-dark);
+  border-top: 1px solid rgba(255,215,0,0.15);
 }
-
 
 /* -------------------------
    RESPONSIVE

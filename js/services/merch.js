@@ -21,12 +21,21 @@ export function getMerchById(id) {
 }
 
 /**
- * Añade un item de merchandising al carrito
+ * Añade un item de merchandising al carrito (incluye color)
  */
-export function addMerchToCart(id) {
-  const itemId = `merch-${id}`; // Diferencia de productos normales
+export function addMerchToCart(id, color) {
+  // ID único por producto + color
+  const itemId = `merch-${id}-${color}`;
+
+  // Buscar si ya existe variante exacta
   const existing = state.cart.find(i => i.id === itemId);
-  if (existing) existing.quantity++;
-  else state.cart.push({ id: itemId, quantity: 1 });
+
+  if (existing) {
+    existing.quantity++;
+  } else {
+    state.cart.push({ id: itemId, quantity: 1 });
+  }
+
+  // Guardar en localStorage
   localStorage.setItem(CONFIG.LS_CART, JSON.stringify(state.cart));
 }
