@@ -1,12 +1,5 @@
 [
-  {
-    "id": 1,
-    "name": "Champú Nutritivo",
-    "price": 12.00,
-    "img": "img/img_prd/champu_nutri.webp",
-    "description": "Champú hidratante para cabellos secos y castigados.",
-    "stock": 10
-  },
+
   {
     "id": 2,
     "name": "Acondicionador Reparador",
