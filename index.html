@@ -44,7 +44,8 @@
         <div class="hero-content text-center" data-aos="fade-up">
             <h1 class="display-3 fw-bold">Look&Luxe</h1>
             <p class="lead mb-4">Donde la elegancia y el estilo se encuentran</p>
-            <a href="#booking" class="btn btn-dark btn-lg px-5 py-3">Pedir Cita</a>
+            <a href="#booking" class="btn btn-dark btn-lg px-5 py-3">Pedir Cita</a> <br> <br>
+            <a href="tel:+34123456789" class="btn btn-outline-light btn-lg px-5 py-3">¡Llámanos!</a> 
         </div>
     </header>
 
@@ -94,7 +95,8 @@
             <h2 class="text-center mb-5 fw-bold" data-aos="fade-up">Sobre Nosotros</h2>
             <div class="row align-items-center">
                 <div class="col-md-6" data-aos="fade-right">
-                    <img src="https://source.unsplash.com/600x400/?hair,spa" class="img-fluid rounded shadow" alt="Nuestro equipo">
+                    <img src="img/logo.PNG" class="img-fluid rounded-circle shadow" alt="Nuestro equipo">
+
                 </div>
                 <div class="col-md-6" data-aos="fade-left">
                     <p>
@@ -117,20 +119,21 @@
             <h2 class="text-center mb-5 fw-bold" data-aos="fade-up">Nuestro Equipo</h2>
             <div class="row text-center g-4">
                 <div class="col-md-4" data-aos="zoom-in">
-                    <img src="https://randomuser.me/api/portraits/men/32.jpg" class="rounded-circle mb-3" width="150" alt="Doctor 1">
+                    <img src="img/trabajador1.jpg" class="rounded-circle mb-3" width="150" alt="Doctor 1">
                     <h5>Dr. Javier López</h5>
                     <p>Experto en cortes modernos y personalizados.</p>
                 </div>
+                                <div class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
+                    <img src="img/directora.PNG" class="rounded-circle mb-3" width="150" alt="Doctor 3">
+                    <h5>Ainhoa Martínez</h5>
+                    <p>Directora de Look&Luxe</p>
+                </div>
                 <div class="col-md-4" data-aos="zoom-in" data-aos-delay="100">
-                    <img src="https://randomuser.me/api/portraits/women/45.jpg" class="rounded-circle mb-3" width="150" alt="Doctora 2">
+                    <img src="img/trabajadora1.jpg" class="rounded-circle mb-3" width="150" alt="Doctora 2">
                     <h5>Dra. Ana García</h5>
                     <p>Coloración y tratamientos capilares profesionales.</p>
                 </div>
-                <div class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
-                    <img src="https://randomuser.me/api/portraits/men/56.jpg" class="rounded-circle mb-3" width="150" alt="Doctor 3">
-                    <h5>Dr. Carlos Fernández</h5>
-                    <p>Especialista en cuidado y estilismo del cabello.</p>
-                </div>
+
             </div>
         </div>
     </section>
@@ -296,6 +299,25 @@
     </script>
     <script type="module" src="js/main.js"></script>
 
+    <!-- Chat UI -->
+    <div id="chat-bubble" aria-hidden="false">💬</div>
+
+    <div id="chat-container" class="hidden" role="dialog" aria-label="Asistente Look&Luxe">
+    <div id="chat-header">
+        <span>Asistente Look&Luxe</span>
+        <button id="closeChat" aria-label="Cerrar chat">✖</button>
+    </div>
+
+    <div id="chat-window" aria-live="polite"></div>
+
+    <div id="chat-input">
+        <input type="text" id="message" placeholder="Escribe aquí…" aria-label="Escribe tu mensaje">
+        <button id="sendBtn" aria-label="Enviar mensaje">➤</button>
+    </div>
+    </div>
+
+
+    <script src="js/chatbot.js"></script>
 
 </body>
 </html>

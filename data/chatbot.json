@@ -1,0 +1,130 @@
+{
+  "welcome": "¡Hola! 👋 Soy tu asistente Look&Luxe. Puedo ayudarte con precios, servicios, reservas y productos. ¿Qué necesitas?",
+
+  "greetings": {
+    "keywords": ["hola", "buenas", "hey", "que tal", "holi", "hello", "buenos dias", "buenas tardes", "buenas noches"],
+    "responses": [
+      "¡Hola! 😊 ¿En qué puedo ayudarte hoy?",
+      "¡Bienvenido! ¿Qué necesitas?",
+      "¡Hola! ¿Buscas información sobre servicios, precios o reservas?",
+      "¡Buenas! ¿En qué puedo ayudarte?",
+      "¡Hey! 👋 ¿Qué tal? ¿Qué deseas saber?",
+      "¡Hola! Estoy aquí para ayudarte con lo que necesites.",
+      "¡Hola! 💫 ¿Quieres saber precios, horarios o reservar?",
+      "¡Buenas! ¿Quieres consultar un servicio o un producto?",
+      "¡Hola, hola! 💁‍♀️ ¿Qué te cuento?"
+    ]
+  },
+
+  "hours": {
+    "keywords": ["hora", "horario", "abren", "cierran", "abierto", "abren hoy", "cerrado", "cuando abrís", "cuando cerraís"],
+    "responses": [
+      "Nuestro horario es:\n🕒 Lunes a Viernes: 10:00–20:00\n🕒 Sábado: 10:00–14:00",
+      "Abrimos de lunes a viernes de 10 a 20, y sábados de 10 a 14.",
+      "Estamos abiertos de lunes a viernes de 10h a 20h, y los sábados de 10h a 14h.",
+      "De lunes a viernes: 10–20h\nSábado: 10–14h 😊",
+      "Hoy estamos abiertos dentro de nuestro horario habitual.",
+      "Puedes visitarnos de 10:00 a 20:00 entre semana.",
+      "Entre semana abrimos todo el día hasta las 20h.",
+      "Los sábados solo abrimos por la mañana hasta las 14h."
+    ]
+  },
+
+  "location": {
+    "keywords": ["donde", "ubicacion", "direccion", "están", "como llegar", "situados"],
+    "responses": [
+      "Nuestra dirección es: 📍 Calle Ejemplo 123, Barcelona.",
+      "Estamos en Calle Ejemplo 123 (Barcelona).",
+      "Nos encuentras en: Calle Ejemplo 123, Barcelona. 📍",
+      "Puedes venir a nuestro salón en Calle Ejemplo 123, Barcelona.",
+      "La ubicación es Calle Ejemplo 123, justo en el centro. 😉",
+      "Estamos situados en Calle Ejemplo 123. ¡Cuando quieras venir!"
+    ]
+  },
+
+  "services": {
+    "keywords": ["servicio", "servicios", "peluqueria", "posticeria", "tratamientos", "opciones", "menu"],
+    "responses": [
+      "Ofrecemos servicios de peluquería y posticería. ¿Qué te gustaría ver?",
+      "Tenemos una amplia variedad de servicios. ¿Buscas algo en concreto?",
+      "Contamos con cortes, color, mechas, tratamientos, extensiones y más. ¿Cuál te interesa?",
+      "Tenemos tanto peluquería como posticería. ¿Quieres saber precios o duración?",
+      "Puedo enseñarte precios y detalles si me dices qué servicio quieres.",
+      "Ofrecemos muchos servicios, ¿estás buscando algo para cabello, color o extensiones?"
+    ]
+  },
+
+  "prices": {
+    "keywords": ["precio", "cuanto cuesta", "cuánto vale", "vale", "coste", "precios"],
+    "responses": [
+      "Los precios dependen del servicio. Si me dices el nombre, te digo el precio exacto.",
+      "Puedo decirte el precio si me dices qué servicio necesitas.",
+      "Dime qué servicio buscas y te digo el precio al instante.",
+      "Si me dices qué necesitas (corte, mechas, color…), te digo su precio.",
+      "Cada servicio tiene su propio precio. ¿Cuál quieres consultar?",
+      "Dime el nombre del servicio o producto y te digo el precio sin problema."
+    ]
+  },
+
+  "booking": {
+    "keywords": ["cita", "reservar", "reserva", "agenda", "pedir cita", "coger cita"],
+    "responses": [
+      "Puedes reservar directamente en la sección *Reservar Cita* de nuestra web. 😊",
+      "Para reservar una cita entra en 'Citas' en el menú. ¡Muy fácil!",
+      "Las reservas se hacen desde la sección de citas de nuestra web.",
+      "Puedes pedir cita online en cualquier momento. ¿Quieres que te guíe?",
+      "Si vas a *Citas* podrás elegir día y hora sin problema.",
+      "La reserva debe hacerse desde nuestra plataforma, así eliges el horario que prefieras."
+    ]
+  },
+
+  "products_info": {
+    "keywords": ["producto", "productos", "champú", "mascarilla", "tratamiento", "merch"],
+    "responses": [
+      "Tenemos varios productos disponibles. ¿Cuál te interesa?",
+      "Dime el nombre del producto y te doy información detallada.",
+      "Si buscas un producto concreto, dime el nombre y te digo precio y detalles.",
+      "¿Quieres ver productos para cuidado capilar, styling o tratamientos?",
+      "Puedo ayudarte con precios y detalles si me dices qué producto buscas."
+    ]
+  },
+
+  "thanks": {
+    "keywords": ["gracias", "thank you", "te lo agradezco"],
+    "responses": [
+      "¡A ti! 😊",
+      "¡Gracias a ti por preguntar!",
+      "¡Un placer ayudarte! 💖",
+      "¡Cuando necesites algo, aquí estaré!",
+      "¡Gracias por escribirnos! ✨"
+    ]
+  },
+
+  "goodbye": {
+    "keywords": ["adios", "hasta luego", "nos vemos", "chau", "me voy"],
+    "responses": [
+      "¡Hasta luego! 👋",
+      "¡Que tengas un gran día!",
+      "¡Nos vemos! 😊",
+      "¡Cuídate! ✨",
+      "¡Aquí estaré si necesitas algo más!"
+    ]
+  },
+
+  "fallback": [
+    "No he entendido eso 😅 ¿Puedes escribirlo de otra forma?",
+    "Lo siento, todavía no tengo una respuesta para eso.",
+    "Hmm… no estoy seguro de eso. ¿Puedes darme más detalles?",
+    "No me queda claro 🤔 ¿Podrías explicarlo un poco más?",
+    "Si me preguntas por un servicio o producto, puedo darte precios y detalles.",
+    "Perdón, no entendí eso. ¿Puedes reformularlo?"
+  ],
+
+  "suggestions": [
+    "Corte masculino",
+    "Retoque raíz",
+    "Mechas",
+    "Arreglo de barba",
+    "Champú profesional"
+  ]
+}
