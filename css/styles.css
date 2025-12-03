@@ -227,12 +227,85 @@ button:hover, .btn:hover {
 /* -------------------------
    FOOTER
 ------------------------- */
-footer {
-  background: var(--light-bg-alt);
-  padding: 2rem;
-  color: var(--gold-dark);
-  border-top: 1px solid rgba(255,215,0,0.15);
+
+/* Hover efectos enlaces */
+.footer-links a {
+  position: relative;
+  transition: color 0.3s ease, transform 0.3s ease;
 }
+.footer-links a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  left: 50%;
+  bottom: -4px;
+  background-color: #d39e00; /* color elegante dorado */
+  transition: width 0.3s ease, left 0.3s ease;
+}
+.footer-links a:hover {
+  color: #d39e00;
+  transform: translateY(-2px);
+}
+.footer-links a:hover::after {
+  width: 100%;
+  left: 0;
+}
+
+/* Redes sociales */
+.footer-social a {
+  display: inline-block;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+.footer-social a:hover {
+  color: #d39e00;
+  transform: scale(1.4) rotate(10deg);
+}
+
+/* Logo hover */
+.logo-footer {
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+.logo-footer:hover {
+  color: #d39e00;
+  transform: scale(1.05);
+}
+
+/* Ajuste responsive para iconos SVG TikTok */
+.footer-social svg {
+  vertical-align: middle;
+  transition: transform 0.3s ease, fill 0.3s ease;
+}
+.footer-social a:hover svg {
+  transform: scale(1.4) rotate(10deg);
+  fill: #d39e00;
+}
+
+/* Título sobre redes sociales */
+.footer-social .fw-bold {
+  color: #d39e00;
+  letter-spacing: 1px;
+  font-size: 0.9rem;
+}
+
+/* Texto itinerante */
+footer .text-secondary {
+  color: #aaa !important;
+  font-style: italic;
+}
+
+#events .card {
+  border: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+#events .card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+#events h5 {
+  color: #d39e00; /* dorado elegante */
+}
+
 
 /* -------------------------
    RESPONSIVE

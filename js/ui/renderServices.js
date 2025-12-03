@@ -11,7 +11,6 @@ export async function renderServices() {
   if (!serviceListEl && !typeSelect && !serviceSelect) return;
 
   try {
-    // Cargar servicios si no existen en state
     const [hair, post] = await Promise.all([
       state.services.hair.length ? state.services.hair : safeFetchJson(CONFIG.PATH_SERVICES_HAIR),
       state.services.post.length ? state.services.post : safeFetchJson(CONFIG.PATH_SERVICES_POST),
@@ -20,9 +19,8 @@ export async function renderServices() {
     state.services.hair = hair;
     state.services.post = post;
 
-    // Función para crear tarjetas
     const createCard = (s, delay) => `
-      <div class="col-md-4" data-aos="fade-up" data-aos-delay="${delay}">
+      <div class="col-md-4 service-card" data-aos="fade-up" data-aos-delay="${delay}">
         <div class="card shadow-sm h-100">
           <img src="${s.img}" loading="lazy" class="card-img-top" alt="${s.name}">
           <div class="card-body d-flex flex-column">
@@ -37,21 +35,52 @@ export async function renderServices() {
       </div>
     `;
 
-    // Función para generar sección completa
-    const createSection = (title, services) => `
-      <h2 class="fw-bold mt-5 mb-4 text-center" style="font-size: 2.2rem; color:#d39e00;">
-        ${title}
-      </h2>
-      <div class="row g-4">
-        ${services.map((s, i) => createCard(s, i * 60)).join("")}
-      </div>
-    `;
+    // --- renderizado con "Ver más" ---
+    const maxVisible = 6; // muestra 6 inicialmente
+    let showingAll = false;
 
-    // Renderizar todo de golpe
-    serviceListEl.innerHTML = createSection("Peluquería", hair) + createSection("Posticería", post);
+    function renderServiceSection(title, services) {
+      const container = document.createElement("div");
+      container.className = "service-section mb-5";
 
-    // Refrescar AOS
-    if (window.AOS) setTimeout(() => AOS.refresh(), 50);
+      const h2 = document.createElement("h2");
+      h2.className = "fw-bold text-center mb-4";
+      h2.style.fontSize = "2rem";
+      h2.style.color = "#d39e00";
+      h2.textContent = title;
+      container.appendChild(h2);
+
+      const row = document.createElement("div");
+      row.className = "row g-4";
+      container.appendChild(row);
+
+      const updateCards = () => {
+        row.innerHTML = "";
+        const list = showingAll ? services : services.slice(0, maxVisible);
+        list.forEach((s, i) => row.insertAdjacentHTML("beforeend", createCard(s, i * 60)));
+        if (window.AOS) setTimeout(() => AOS.refresh(), 50);
+      };
+
+      updateCards();
+
+      if (services.length > maxVisible) {
+        const btn = document.createElement("button");
+        btn.className = "btn btn-dark mt-3 d-block mx-auto";
+        btn.textContent = "Ver más";
+        btn.addEventListener("click", () => {
+          showingAll = !showingAll;
+          btn.textContent = showingAll ? "Ver menos" : "Ver más";
+          updateCards();
+        });
+        container.appendChild(btn);
+      }
+
+      return container;
+    }
+
+    serviceListEl.innerHTML = ""; // limpiar
+    serviceListEl.appendChild(renderServiceSection("Peluquería", hair));
+    serviceListEl.appendChild(renderServiceSection("Posticería", post));
 
     // --- SELECTS BOOKING ---
     if (typeSelect && serviceSelect) {
