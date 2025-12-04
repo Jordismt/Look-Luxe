@@ -234,9 +234,9 @@
   {
     "id": 30,
     "name": "Otros Tipos de Trenzas",
-    "price": "consultar",
+    "price": "Consultar",
     "duration": null,
     "img": "img/img_srv/default.jpg",
-    "description": "Consultar"
+    "description": "Consultar precio"
   }
 ]

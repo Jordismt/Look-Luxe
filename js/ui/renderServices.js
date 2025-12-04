@@ -24,16 +24,39 @@ export async function renderServices() {
         <div class="card shadow-sm h-100">
           <img src="${s.img}" loading="lazy" class="card-img-top" alt="${s.name}">
           <div class="card-body d-flex flex-column">
+            
             <h5 class="card-title fw-bold text-center">${s.name}</h5>
             <p class="flex-grow-1 mb-3">${s.description.split(";").join("<br>")}</p>
-            <div class="d-flex justify-content-between fw-bold">
-              <span>${s.price}€</span>
-              <span>${s.duration} min</span>
+
+            <div class="d-flex justify-content-between fw-bold align-items-center">
+              <span>
+                ${
+                  typeof s.price === "number"
+                    ? s.price + "€"
+                    : s.price
+                }
+              </span>
+
+              <span>
+                ${
+                  s.duration === null
+                    ? ""
+                    : s.duration + " min"
+                }
+              </span>
             </div>
+
+            ${
+              (typeof s.price !== "number" || s.duration === null)
+                ? `<button class="btn btn-warning mt-3 fw-bold" onclick="window.location.href='tel:+34600000000'">📞 Llamar</button>`
+                : ""
+            }
+
           </div>
         </div>
       </div>
     `;
+
 
     // --- renderizado con "Ver más" ---
     const maxVisible = 6; // muestra 6 inicialmente

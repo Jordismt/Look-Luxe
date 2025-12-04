@@ -171,16 +171,76 @@
     </section>
 
     <!-- GALERÍA -->
-    <section id="gallery" class="py-5">
-        <div class="container">
-            <h2 class="text-center mb-5 fw-bold" data-aos="fade-up">Galería</h2>
-            <div class="row g-3">
-                <div class="col-md-4" data-aos="zoom-in"><img src="https://source.unsplash.com/400x400/?hair,cut" class="img-fluid rounded shadow" alt="Galería 1"></div>
-                <div class="col-md-4" data-aos="zoom-in" data-aos-delay="100"><img src="https://source.unsplash.com/400x400/?hair,color" class="img-fluid rounded shadow" alt="Galería 2"></div>
-                <div class="col-md-4" data-aos="zoom-in" data-aos-delay="200"><img src="https://source.unsplash.com/400x400/?hair,spa" class="img-fluid rounded shadow" alt="Galería 3"></div>
+<section id="gallery" class="py-5">
+    <div class="container">
+        <h2 class="text-center mb-5 fw-bold" data-aos="fade-up">Galería</h2>
+
+        <div id="videoCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+
+                <!-- Slide 1 -->
+                <div class="carousel-item active">
+                    <div class="row g-3">
+
+                        <div class="col-md-6">
+                            <div class="yt-wrapper">
+                                <div class="yt-lite" data-id="D5y9HVKeiAI">
+                                    <div class="play-btn"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="yt-wrapper">
+                                <div class="yt-lite" data-id="K8uJ78wANt4">
+                                    <div class="play-btn"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Slide 2 -->
+                <div class="carousel-item">
+                    <div class="row g-3">
+
+                        <div class="col-md-6">
+                            <div class="yt-wrapper">
+                                <div class="yt-lite" data-id="AkeGgXlTLQ0">
+                                    <div class="play-btn"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="yt-wrapper">
+                                <div class="yt-lite" data-id="xk5tQhA9JcM">
+                                    <div class="play-btn"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
             </div>
+
+            <!-- Controles -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#videoCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </button>
+
+            <button class="carousel-control-next" type="button" data-bs-target="#videoCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </button>
         </div>
-    </section>
+
+    </div>
+</section>
+
+
+
 
     <!-- OFERTAS -->
     <section id="offers" class="">
@@ -415,6 +475,26 @@
 
 
     <script src="js/chatbot.js"></script>
+    <script>
+        document.querySelectorAll('.yt-lite').forEach(el => {
+            const id = el.dataset.id;
+
+            // Miniatura optimizada (no iframe)
+            el.style.backgroundImage = `url('https://i.ytimg.com/vi/${id}/hqdefault.jpg')`;
+
+            el.addEventListener('click', () => {
+                const iframe = document.createElement('iframe');
+                iframe.src = `https://www.youtube.com/embed/${id}?autoplay=1`;
+                iframe.allow = "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture";
+                iframe.allowFullscreen = true;
+                iframe.className = "w-100 h-100 border-0";
+
+                el.innerHTML = "";
+                el.appendChild(iframe);
+            });
+        });
+    </script>
+
 
 </body>
 </html>
