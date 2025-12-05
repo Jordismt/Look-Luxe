@@ -39,6 +39,10 @@
                     <li class="nav-item"><a href="#products" class="nav-link">Productos</a></li>
                     <li class="nav-item"><a href="#booking" class="nav-link">Pedir Cita</a></li>
                     <li class="nav-item"><a href="carrito.html" class="nav-link">Carrito</a></li>
+                    <li class="nav-item">
+                        <a id="adminBtn" class="nav-link text-light" style="cursor:pointer;">ADMIN</a>
+                    </li>
+
                     
                 </ul>
             </div>
@@ -472,6 +476,48 @@
         <button id="sendBtn" aria-label="Enviar mensaje">➤</button>
     </div>
     </div>
+
+
+    <!-- ADMIN LOGIN MODAL -->
+    <div id="adminModal"
+        style="display:none; position:fixed; top:0; left:0; width:100%; height:100%;
+                background:rgba(0,0,0,0.7); backdrop-filter:blur(3px); 
+                justify-content:center; align-items:center; z-index:9999;">
+    
+    <div style="background:#111; padding:30px; border-radius:12px; width:320px; text-align:center;">
+        <h4 class="mb-3 text-light">Acceso Administrador</h4>
+
+        <input id="adminPass" type="password" placeholder="Introduce la contraseña"
+            class="form-control mb-3">
+
+        <button id="adminLogin" class="btn btn-warning w-100 fw-bold">Entrar</button>
+
+        <button id="adminClose" class="btn btn-outline-light w-100 mt-2">Cancelar</button>
+    </div>
+    </div>
+    <script>
+        const ADMIN_PASSWORD = "Ainhoeta05"; // <-- cámbiala
+
+        document.getElementById("adminBtn").onclick = () => {
+        document.getElementById("adminModal").style.display = "flex";
+        };
+
+        document.getElementById("adminClose").onclick = () => {
+        document.getElementById("adminModal").style.display = "none";
+        };
+
+        document.getElementById("adminLogin").onclick = () => {
+        const pass = document.getElementById("adminPass").value;
+
+        if (pass === ADMIN_PASSWORD) {
+            sessionStorage.setItem("adminAuth", "1");
+            window.location.href = "admin.html";
+        } else {
+            alert("❌ Contraseña incorrecta");
+        }
+        };
+    </script>
+
 
 
     <script src="js/chatbot.js"></script>
