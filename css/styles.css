@@ -68,6 +68,10 @@ h4 {
     color: #ff9900; /* un color llamativo */
     text-shadow: 1px 1px 4px rgba(0,0,0,0.2);
 }
+.h4-small {
+  font-size: 1.2rem; /* ajusta el tamaño como quieras */
+}
+
 h2[data-aos], h4[data-aos] {
     transform: translateY(20px);
     opacity: 0;
