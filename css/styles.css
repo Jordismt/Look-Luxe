@@ -101,50 +101,151 @@ a {
 .nav-link:hover::after { transform: scaleX(1); }
 
 /* -------------------------
-   HERO
+   HERO — Versión Mejorada
 ------------------------- */
 header {
-  height: 100vh;
+  height: 90vh;
+  min-height: 460px;
   position: relative;
   display:flex;
   align-items:center;
   justify-content:center;
   text-align:center;
   overflow: hidden;
-  background: var(--light-bg-alt);
+  padding-top: 80px;
 }
 
-header::before {
-  content:"";
-  position:absolute;
-  inset:0;
-  background: url('../img/hero_img.JPG') center/cover no-repeat;
-  opacity: 0.15;
-  animation: zoom 40s linear infinite alternate;
+/* VIDEO MUCHO MÁS CLARO Y VISIBLE */
+.hero-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: auto;      /* ancho automático */
+  height: 100%;     /* ocupa todo el alto */
+  min-width: 100%;  /* asegura que cubra el ancho */
+  transform: translate(-50%, -50%); /* centra el video */
+  object-fit: cover; /* mantiene proporción */
+  opacity: 0.85;
+  filter: brightness(0.75) contrast(1);
+  z-index: 1;
 }
 
-@keyframes zoom {
-  from { transform: scale(1); }
-  to   { transform: scale(1.05); }
+
+/* CAPA DE GRADIENTE PARA LEER EL TEXTO SIN PERDER EL VIDEO */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(
+    180deg,
+    rgba(0,0,0,0.25),
+    rgba(0,0,0,0.45)
+  );
 }
 
+/* TARJETA MÁS PEQUEÑA, MÁS TRANSPARENTE, MÁS ELEGANTE */
 .hero-content {
   position: relative;
   z-index: 5;
-  padding: 3rem;
-  border-radius: var(--radius);
-  background: var(--glass-bg);
-  backdrop-filter: blur(var(--blur));
-  border: 1px solid var(--glass-border);
-  box-shadow: var(--shadow);
-  animation: glow 3s ease-in-out infinite alternate;
+  padding: 1.8rem 2rem;
+  max-width: 580px;
+  border-radius: 16px;
+
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.25);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.12);
 }
+
+/* TÍTULO MÁS ELEGANTE */
+.hero-content h1 {
+  font-size: 2.6rem;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+/* SUBTÍTULO SUTIL */
+.hero-content p {
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+/* -------------------------
+   MOBILE OPTIMIZACIÓN
+------------------------- */
+@media(max-width: 768px){
+
+  header {
+    height: 100vh; /* ocupamos toda la pantalla */
+    padding-top: 0; /* quitamos padding del header */
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Video de fondo siempre cubre todo el header */
+  .hero-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.9;
+    filter: brightness(1.15) contrast(1.05);
+    z-index: 1;
+  }
+
+  /* Contenido encima del video */
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    margin: 0 auto;
+    margin-top: 70px; /* empuja el contenido debajo de la navbar */
+    padding: 1rem 1.2rem;
+    max-width: 85%;
+    background: rgba(255,255,255,0.12);
+    backdrop-filter: blur(6px);
+    border-radius: 14px;
+    text-align: center;
+  }
+
+  .hero-content h1 {
+    font-size: 1.5rem;
+    line-height: 1.2;
+  }
+
+  .hero-content p {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+  }
+
+  .hero-content .btn {
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+  }
+}
+
+@media(max-width: 480px){
+  .hero-content {
+    margin-top: 60px;
+    padding: 0.8rem 1rem;
+  }
+
+  .hero-content h1 { font-size: 1.3rem; }
+  .hero-content p  { font-size: 0.8rem; }
+  .hero-content .btn { font-size: 0.85rem; padding: 0.4rem 0.9rem; }
+}
+
+
+
 
 @keyframes glow {
   0% { box-shadow: 0 0 15px var(--soft-pink); }
   50% { box-shadow: 0 0 20px var(--peach); }
   100% { box-shadow: 0 0 18px var(--gold); }
 }
+
 
 /* -------------------------
    SECCIONES
