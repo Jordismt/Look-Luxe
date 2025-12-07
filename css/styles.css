@@ -118,12 +118,12 @@ header {
 /* VIDEO MUCHO MÁS CLARO Y VISIBLE */
 .hero-video {
   position: absolute;
-  top: 50%;
-  left: 50%;
+  
+ 
   width: auto;      /* ancho automático */
   height: 100%;     /* ocupa todo el alto */
   min-width: 100%;  /* asegura que cubra el ancho */
-  transform: translate(-50%, -50%); /* centra el video */
+  
   object-fit: cover; /* mantiene proporción */
   opacity: 0.85;
   filter: brightness(0.75) contrast(1);
