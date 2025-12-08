@@ -152,8 +152,7 @@
       <div class="member col-md-4 text-center" data-aos="zoom-in">
         <img src="img/trabajador1.jpg" alt="Dr. Javier López" class="rounded-circle mb-3" width="150">
         <h3>Dr. Javier López</h3>
-        <div class="badge bg-dark text-light mb-2">Cortes y Estilo</div>
-        <p>Experto en cortes modernos y personalizados.</p>
+        <div class="badge bg-dark text-light mb-2">Técnico en peluqueria y posticeria</div>
         <div class="social-links">
           <a href="#"><i class="fab fa-instagram"></i></a>
           <a href="#"><i class="fab fa-youtube"></i></a>
@@ -165,8 +164,7 @@
       <div class="member col-md-4 text-center" data-aos="zoom-in" data-aos-delay="100">
         <img src="img/IMG_4516.jpg" alt="Ainhoa Martínez" class="rounded-circle mb-3" width="150">
         <h3>Ainhoa Martínez</h3>
-        <div class="badge bg-dark text-light mb-2">Directora</div>
-        <p>Directora de Look&Luxe, supervisa cada detalle del servicio.</p>
+        <div class="badge bg-dark text-light mb-2">Directora y Técnica <br> en peluquería y posticeria </div>
         <div class="social-links">
           <a href="#"><i class="fab fa-instagram"></i></a>
           <a href="#"><i class="fab fa-youtube"></i></a>
@@ -178,8 +176,8 @@
       <div class="member col-md-4 text-center" data-aos="zoom-in" data-aos-delay="200">
         <img src="img/trabajadora1.jpg" alt="Dra. Ana García" class="rounded-circle mb-3" width="150">
         <h3>Dra. Ana García</h3>
-        <div class="badge bg-dark text-light mb-2">Coloración y Tratamientos</div>
-        <p>Especialista en coloración y tratamientos capilares profesionales.</p>
+        <div class="badge bg-dark text-light mb-2">Técnica en peluquería</div>
+       
         <div class="social-links">
           <a href="#"><i class="fab fa-instagram"></i></a>
           <a href="#"><i class="fab fa-youtube"></i></a>
@@ -191,32 +189,121 @@
   </div>
 </section>
 
-    <!-- TESTIMONIOS -->
-    <section id="testimonials" class="">
-        <div class="container">
-            <h2 class="text-center mb-5 fw-bold" data-aos="fade-up">Testimonios</h2>
-            <div class="row g-4">
-                <div class="col-md-4" data-aos="fade-up" data-aos-delay="50">
-                    <div class="card liquid p-4 text-center">
-                        <p>"Excelente atención y resultados increíbles. ¡Mi cabello nunca había estado tan bien!"</p>
-                        <h6 class="fw-bold mt-3">Laura M.</h6>
-                    </div>
-                </div>
-                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
-                    <div class="card liquid p-4 text-center">
-                        <p>"Profesionales de verdad, ambiente elegante y súper recomendable."</p>
-                        <h6 class="fw-bold mt-3">Carlos R.</h6>
-                    </div>
-                </div>
-                <div class="col-md-4" data-aos="fade-up" data-aos-delay="150">
-                    <div class="card liquid p-4 text-center">
-                        <p>"Me encantó el trato personalizado y los productos de alta calidad."</p>
-                        <h6 class="fw-bold mt-3">Ana P.</h6>
-                    </div>
-                </div>
-            </div>
+<!-- TESTIMONIOS -->
+<section id="testimonials" class="">
+  <div class="container">
+    <h2 class="text-center mb-5 fw-bold" data-aos="fade-up">Testimonios</h2>
+    <div class="row g-4"><!-- aquí se inyectan las reseñas dinámicamente --></div>
+  </div>
+</section>
+
+<!-- FORMULARIO PARA AÑADIR RESEÑA -->
+<section id="add-review" class="mt-5">
+  <div class="container">
+    <div class="review-card mx-auto p-4 shadow-sm rounded">
+      <h3 class="text-center mb-3 fw-bold">Añadir reseña</h3>
+      <form id="reviewForm">
+        <div class="mb-3">
+          <textarea id="reviewText" class="form-control form-control-sm" rows="3" placeholder="Escribe tu reseña..." required></textarea>
         </div>
-    </section>
+        <div class="mb-3">
+          <input id="reviewAuthor" class="form-control form-control-sm" placeholder="Tu nombre" required />
+        </div>
+        <!-- Selector de estrellas -->
+        <div class="mb-3 text-center">
+          <label class="form-label d-block mb-2">Valoración:</label>
+          <div id="starRating" class="stars">
+            <span class="star" data-value="1">★</span>
+            <span class="star" data-value="2">★</span>
+            <span class="star" data-value="3">★</span>
+            <span class="star" data-value="4">★</span>
+            <span class="star" data-value="5">★</span>
+          </div>
+        </div>
+        <div class="text-center">
+          <button type="submit" class="btn btn-sm btn-primary px-4">Enviar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+
+<script type="module">
+  import { ReviewsUI } from "./js/ui/renderReviews.js";
+
+  let selectedRating = 0;
+  const reviewsUI = new ReviewsUI("#testimonials .row");
+
+  document.addEventListener("DOMContentLoaded", async () => {
+    await reviewsUI.init();
+
+    // Manejar selección de estrellas
+    const stars = document.querySelectorAll("#starRating .star");
+    stars.forEach(star => {
+      star.addEventListener("click", () => {
+        selectedRating = parseInt(star.getAttribute("data-value"));
+        stars.forEach(s => s.classList.remove("selected"));
+        for (let i = 0; i < selectedRating; i++) {
+          stars[i].classList.add("selected");
+        }
+      });
+    });
+
+    // Manejar el formulario
+    document.getElementById("reviewForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const text = document.getElementById("reviewText").value;
+      const author = document.getElementById("reviewAuthor").value;
+
+      if (selectedRating === 0) {
+        alert("Por favor selecciona una valoración con estrellas.");
+        return;
+      }
+
+      reviewsUI.addReview(text, author, selectedRating);
+      this.reset();
+      selectedRating = 0;
+      stars.forEach(s => s.classList.remove("selected"));
+    });
+  });
+</script>
+
+
+<style>
+/* Card compacta para el formulario */
+.review-card {
+  max-width: 400px;
+  background: #fff;
+  border: 1px solid #eee;
+}
+
+/* Estilo para estrellas */
+.stars {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+.star {
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: #ccc;
+  transition: transform 0.2s, color 0.2s;
+}
+
+.star:hover {
+  transform: scale(1.2);
+  color: #ffcc00;
+}
+
+.star.selected {
+  color: #ffcc00;
+}
+
+</style>
+
+
 
     <!-- GALERÍA -->
 <section id="gallery" class="py-5">
@@ -290,26 +377,55 @@
 
 
 
-    <!-- OFERTAS -->
-    <section id="offers" class="">
-        <div class="container">
-            <h2 class="text-center mb-5 fw-bold" data-aos="fade-up">Ofertas Especiales</h2>
-            <div class="row g-4">
-                <div class="col-md-6" data-aos="fade-up" data-aos-delay="50">
-                    <div class="card liquid p-4 text-center">
-                        <h5>Paquete Color & Corte</h5>
-                        <p>50% de descuento durante el mes de noviembre.</p>
-                    </div>
-                </div>
-                <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
-                    <div class="card liquid p-4 text-center">
-                        <h5>Tratamiento Capilar Premium</h5>
-                        <p>Llévate un tratamiento gratis al comprar productos profesionales.</p>
-                    </div>
-                </div>
-            </div>
+<!-- OFERTAS -->
+<section id="offers" class="py-5 bg-light">
+  <div class="container">
+    <h2 class="text-center mb-5 fw-bold" data-aos="fade-up">Ofertas Especiales</h2>
+    <div class="row g-4">
+
+      <!-- Oferta 1 -->
+      <div class="col-md-4" data-aos="zoom-in" data-aos-delay="50">
+        <div class="offer-card card h-100 text-center shadow-sm border-0">
+          <div class="offer-badge">-20%</div>
+          <div class="card-body">
+            <i class="bi bi-scissors fs-1 text-primary mb-3"></i>
+            <h5 class="fw-bold">Primera Visita</h5>
+            <p class="text-muted">Disfruta de un <strong>20% de descuento</strong> en tu primera visita presencial.</p>
+          </div>
         </div>
-    </section>
+      </div>
+
+      <!-- Oferta 2 -->
+      <div class="col-md-4" data-aos="zoom-in" data-aos-delay="100">
+        <div class="offer-card card h-100 text-center shadow-sm border-0">
+          <div class="offer-badge">-15%</div>
+          <div class="card-body">
+            <i class="bi bi-droplet fs-1 text-success mb-3"></i>
+            <h5 class="fw-bold">Tratamiento Capilar Premium</h5>
+            <p class="text-muted">Llévate un <strong>15% de descuento</strong> al comprar productos profesionales en nuestra web.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Oferta 3 -->
+      <div class="col-md-4" data-aos="zoom-in" data-aos-delay="150">
+        <div class="offer-card card h-100 text-center shadow-sm border-0">
+          <div class="offer-badge">-25%</div>
+          <div class="card-body">
+            <i class="bi bi-palette fs-1 text-danger mb-3"></i>
+            <h5 class="fw-bold">Paquete Color & Corte</h5>
+            <p class="text-muted">Obtén <strong>25% de descuento</strong> durante el mes de Enero.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+
 <!-- TARJETA DE FIDELIZACIÓN SOLO IMAGEN -->
 <section id="loyalty" class="py-5 bg-light">
   <div class="container">
@@ -437,9 +553,7 @@
             <!-- Mensaje éxito -->
             <div id="bookingSuccess" class="alert alert-success mt-3 d-none"></div>
 
-            <!-- Listado de citas existentes -->
-            <h5 class="text-warning mt-4">Citas existentes:</h5>
-            <ul id="bookingList" class="list-group mb-5"></ul>
+
         </div>
         </div>
     </div>
@@ -505,7 +619,7 @@
     <!-- Info adicional -->
     <div class="row">
       <div class="col-md-6 text-center text-md-start small text-secondary">
-        <p class="mb-0">🚐 Caravana móvil – nos encontrarás en festivales, ferias y mercados.</p>
+        <p class="mb-0">🚐 Caravana móvil – nos encontrarás en festivales, ferias, mercados, campings...</p>
         <p class="mb-0">📞 +34 600 123 456</p>
         <p class="mb-0">✉️ contacto@lookluxe.com</p>
       </div>

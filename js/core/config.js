@@ -8,7 +8,7 @@ export const CONFIG = {
   LS_BOOKINGS: "lookluxe_bookings_v2",
   LS_THEME: "lookluxe_theme_v1",
 
-  OPEN_HOUR: 10,
+  OPEN_HOUR: 9,
   CLOSE_HOUR: 19,
   INTERVAL_MINUTES: 30,
 };

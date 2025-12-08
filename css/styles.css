@@ -492,6 +492,59 @@ section {
 
 
 /* -------------------------
+   OFERTAS
+------------------------- */
+.offer-card {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  border-radius: 30px;              /* bordes redondeados tipo ovalo */
+  background: linear-gradient(145deg, #ffffff, #f0f0f0);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  padding: 2rem;
+}
+
+.offer-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+}
+
+/* Badge estilo etiqueta */
+.offer-badge {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: #ff4d4d;
+  color: #fff;
+  font-weight: bold;
+  padding: 6px 14px;
+  border-radius: 20px;              /* badge redondeado */
+  font-size: 0.85rem;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+}
+
+/* Título de sección */
+#offers h2 {
+  color: #333;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+/* Iconos dentro de la tarjeta */
+#offers i {
+  transition: transform 0.3s ease, color 0.3s ease;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #007bff;
+}
+
+.offer-card:hover i {
+  transform: scale(1.2);
+  color: #0056b3;
+}
+
+
+/* -------------------------
    FORMULARIOS
 ------------------------- */
 form {

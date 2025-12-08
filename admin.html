@@ -2,44 +2,66 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Panel Admin - Look&Luxe</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Panel Admin - Look&Luxe (Mejorado)</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
   <style>
-    body { background: #111; color: #fff; }
-    .admin-card { background: #1a1a1a; border: 1px solid #333; padding:20px; border-radius:12px; margin-bottom:24px; }
-    .table-dark th { background-color: #222 !important; }
-    .badge-cat { font-size: .75rem; }
-    .toolbar .form-control, .toolbar .btn, .toolbar .form-select { height: 40px; }
-    .brand-title { letter-spacing: .5px; }
+    :root{--bg:#0f1113;--card:#161718;--muted:#9aa0a6}
+    html,body{height:100%}
+    body{background:linear-gradient(180deg,#070708 0%, #0f1113 100%);color:#fff;font-family:Inter,system-ui,Segoe UI,Roboto,'Helvetica Neue',Arial}
+    .admin-card{background:var(--card);border:1px solid rgba(255,255,255,0.04);padding:18px;border-radius:12px;margin-bottom:20px}
+    .brand-title{letter-spacing:.6px}
+    .toolbar .form-control,.toolbar .btn,.toolbar .form-select{height:40px}
+    .badge-cat{font-size:.75rem}
+    .small-muted{color:var(--muted);font-size:.9rem}
+    .table-dark thead th{background:transparent;border-bottom:1px solid rgba(255,255,255,0.03)}
+    .pill{background:rgba(13,110,253,0.08);padding:6px 10px;border-radius:999px}
+    .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.04)}
+    .muted-td{color:var(--muted);font-size:.85rem}
+    @media (max-width:900px){.toolbar{flex-wrap:wrap}.toolbar .form-control{min-width:140px}}
   </style>
 </head>
 <body>
-
 <script>
-  // Bloquea acceso si no hay sesión admin
-  if (sessionStorage.getItem("adminAuth") !== "1") {
-    window.location.href = "index.html";
+  if (sessionStorage.getItem('adminAuth') !== '1') {
+    // desbloquea en desarrollo quitando la línea anterior o estableciendo sessionStorage.setItem('adminAuth','1')
+    // window.location.href = 'index.html';
   }
 </script>
 
 <div class="container py-4">
   <div class="d-flex justify-content-between align-items-center mb-4">
-    <h1 class="text-warning brand-title">⚙️ Panel Administrador</h1>
-    <button class="btn btn-outline-light" onclick="logout()">Cerrar sesión</button>
+    <h1 class="text-warning brand-title">⚙️ Panel Administrador — Look&Luxe</h1>
+    <div class="d-flex gap-2 align-items-center">
+      <div class="small-muted me-2">Citas: <span id="totalCount">0</span></div>
+      <button class="btn btn-outline-light" onclick="logout()">Cerrar sesión</button>
+    </div>
   </div>
 
   <!-- Citas -->
   <div class="admin-card">
     <div class="d-flex flex-wrap justify-content-between align-items-center mb-3">
       <h2 class="mb-2">Citas</h2>
-      <div class="toolbar d-flex gap-2">
+      <div class="toolbar d-flex gap-2 align-items-center">
         <input id="searchBookings" type="search" class="form-control bg-dark text-light" placeholder="Buscar cliente/servicio…">
-        <select id="filterCategory" class="form-select bg-dark text-light" style="min-width:180px">
+
+        <select id="filterCategory" class="form-select bg-dark text-light" style="min-width:150px">
           <option value="">Todas las categorías</option>
           <option value="hair">Peluquería</option>
           <option value="post">Posticería</option>
         </select>
-        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#bookingModal" onclick="openNew()">➕ Nueva cita</button>
+
+        <input id="filterDateFrom" type="date" class="form-control bg-dark text-light" title="Desde" style="width:150px">
+        <input id="filterDateTo" type="date" class="form-control bg-dark text-light" title="Hasta" style="width:150px">
+
+        <div class="btn-group" role="group">
+          <button class="btn btn-sm btn-outline-light" onclick="setPreset('today')">Hoy</button>
+          <button class="btn btn-sm btn-outline-light" onclick="setPreset('next7')">7 días</button>
+          <button class="btn btn-sm btn-outline-light" onclick="clearDateFilters()">Limpiar</button>
+        </div>
+
+        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#bookingModal" onclick="openNew()">➕ Nueva</button>
+        <button class="btn btn-secondary" id="exportFiltered">Exportar filtradas</button>
       </div>
     </div>
 
@@ -47,17 +69,25 @@
       <table class="table table-dark table-striped align-middle">
         <thead>
           <tr>
-            <th>Cliente</th>
+            <th style="width:200px">Cliente / contacto</th>
             <th>Servicio</th>
-            <th>Fecha</th>
-            <th>Hora</th>
+            <th>Fecha <button class="btn btn-link btn-sm text-info p-0" onclick="sortBy('date')">⇅</button></th>
+            <th>Hora <button class="btn btn-link btn-sm text-info p-0" onclick="sortBy('time')">⇅</button></th>
             <th>Duración</th>
             <th>Categoría</th>
-            <th style="width:180px">Acciones</th>
+            <th style="width:220px">Acciones</th>
           </tr>
         </thead>
         <tbody id="citasList"></tbody>
       </table>
+    </div>
+
+    <div class="d-flex justify-content-between align-items-center mt-2">
+      <div class="small-muted">Mostrando <span id="showingCount">0</span> de <span id="totalCountFooter">0</span></div>
+      <div class="d-flex gap-2">
+        <button class="btn btn-sm btn-outline-danger" onclick="bulkDeletePast()">Eliminar pasadas</button>
+        <button class="btn btn-sm btn-ghost" id="duplicateBtn" title="Duplicar última">Duplicar última</button>
+      </div>
     </div>
   </div>
 
@@ -102,17 +132,17 @@
             <input type="text" id="adminName" class="form-control bg-dark text-light" required>
           </div>
 
-          <div class="mb-3">
-            <label class="form-label">Email</label>
-            <input type="email" id="adminEmail" class="form-control bg-dark text-light">
+          <div class="mb-3 row">
+            <div class="col-md-6 mb-2">
+              <label class="form-label">Email</label>
+              <input type="email" id="adminEmail" class="form-control bg-dark text-light">
+            </div>
+            <div class="col-md-6 mb-2">
+              <label class="form-label">Teléfono</label>
+              <input type="tel" id="adminPhone" class="form-control bg-dark text-light">
+            </div>
           </div>
 
-          <div class="mb-3">
-            <label class="form-label">Teléfono</label>
-            <input type="tel" id="adminPhone" class="form-control bg-dark text-light">
-          </div>
-
-          <!-- Tipo de servicio (igual que en index, valores externos) -->
           <div class="mb-3">
             <label class="form-label">Tipo de servicio</label>
             <select id="adminServiceType" class="form-select bg-dark text-light" required>
@@ -122,12 +152,12 @@
             </select>
           </div>
 
-          <!-- Servicio específico (se rellena dinámicamente) -->
           <div class="mb-3">
             <label class="form-label">Servicio</label>
             <select id="adminServiceSelect" class="form-select bg-dark text-light" required>
               <option value="" disabled selected>Elige un servicio...</option>
             </select>
+            <div class="form-text muted-td">La duración se autoaplica según el servicio.</div>
           </div>
 
           <div class="row">
@@ -147,294 +177,230 @@
       </div>
       <div class="modal-footer">
         <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <button class="btn btn-success" onclick="saveAdminBooking()">Guardar</button>
+        <button class="btn btn-success" id="saveBtn">Guardar</button>
       </div>
     </div>
   </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
-<!-- Lógica admin como módulo -->
 <script type="module">
-  import { state } from "./js/core/state.js";
-  import { CONFIG } from "./js/core/config.js";
+  import { state } from './js/core/state.js';
+  import { CONFIG } from './js/core/config.js';
 
-  // Utilidades
-  const $ = (id) => document.getElementById(id);
-  const timeToMinutes = (t) => { const [hh, mm] = t.split(":").map(Number); return hh*60 + mm; };
-  const TYPE_TO_CAT = { peluqueria: "hair", posticeria: "post" };
+  const $ = id => document.getElementById(id);
+  const LS_BOOKINGS = CONFIG.LS_BOOKINGS;
+  const LS_ORDERS = 'orders';
 
-  // Carga de servicios para admin (si aún no están en state)
-  async function loadServicesForAdmin() {
-    if ((state.services.hair?.length || 0) + (state.services.post?.length || 0) > 0) return;
-    const hair = await fetch("./services.json").then(r => r.json()).catch(() => []);
-    const post = await fetch("./services_post.json").then(r => r.json()).catch(() => []);
-    state.services.hair = Array.isArray(hair) ? hair : [];
-    state.services.post = Array.isArray(post) ? post : [];
+  // Helpers timezone-safe
+  function parseDateLocal(d) {
+    if (!d) return null;
+    const [y,m,day] = d.split('-').map(Number);
+    return new Date(y, m-1, day);
+  }
+  function parseDateTimeLocal(d,t){
+    if(!d) return null;
+    const [y,m,day]=d.split('-').map(Number);
+    const [hh=0,mm=0] = (t||'').split(':').map(Number);
+    return new Date(y,m-1,day,hh,mm);
   }
 
-  // Rellena el select de servicios según el tipo
-  function fillServiceOptionsAdmin() {
-    const typeVal = $("adminServiceType")?.value;          // "peluqueria"/"posticeria"
-    const cat = TYPE_TO_CAT[typeVal];                      // "hair"/"post"
-    const sel = $("adminServiceSelect");
-    sel.innerHTML = `<option value="" disabled selected>Elige un servicio...</option>`;
-    if (!cat) return;
+  // safe ISO date string for inputs
+  const asISO = d => d.toISOString().slice(0,10);
 
-    const list = cat === "hair" ? state.services.hair : state.services.post;
-    list.forEach(s => {
-      const opt = document.createElement("option");
-      opt.value = s.name;
-      opt.textContent = s.name;
-      opt.dataset.category = cat;       // igual que en index
-      opt.dataset.duration = s.duration; // para horas disponibles
-      sel.appendChild(opt);
-    });
+  // state local fallbacks
+  if(!state.services) state.services = { hair: [], post: [] };
 
-    $("adminTime").innerHTML = `<option value="" disabled selected>Selecciona hora</option>`;
+  async function loadServicesForAdmin(){
+    if((state.services.hair?.length||0)+(state.services.post?.length||0)>0) return;
+    try{
+      const [hairRes, postRes] = await Promise.all([
+        fetch('./services.json').then(r=>r.json()).catch(()=>[]),
+        fetch('./services_post.json').then(r=>r.json()).catch(()=>[])
+      ]);
+      state.services.hair = Array.isArray(hairRes)?hairRes:[];
+      state.services.post = Array.isArray(postRes)?postRes:[];
+    }catch(e){console.warn('No se pudieron cargar servicios',e);}
   }
 
-  // IsAvailable como en index (valida solapes)
-  function isTimeAvailableAdmin(date, startTime, duration, category, ignoreIndex = null) {
-    const start = timeToMinutes(startTime);
-    const end = start + duration;
-    const bookings = JSON.parse(localStorage.getItem(CONFIG.LS_BOOKINGS) || "[]");
+  // fill services
+  const TYPE_TO_CAT = { peluqueria:'hair', posticeria:'post' };
+  function fillServiceOptionsAdmin(){
+    const typeVal = $('adminServiceType').value;
+    const sel = $('adminServiceSelect'); sel.innerHTML = '<option value="" disabled selected>Elige un servicio...</option>';
+    const cat = TYPE_TO_CAT[typeVal]; if(!cat) return; const list = cat==='hair'?state.services.hair:state.services.post;
+    list.forEach(s=>{ const opt=document.createElement('option'); opt.value=s.name; opt.textContent=s.name; opt.dataset.category=cat; opt.dataset.duration=s.duration; sel.appendChild(opt); });
+    $('adminTime').innerHTML = '<option value="" disabled selected>Selecciona hora</option>';
+  }
 
-    return !bookings.some((b, idx) => {
-      if (ignoreIndex !== null && idx === ignoreIndex) return false;
-      if (b.date !== date || b.category !== category) return false;
-      const s = [...state.services.hair, ...state.services.post].find(x => x.name === b.service);
-      const d = s?.duration || 30;
-      const sStart = timeToMinutes(b.time);
-      const sEnd = sStart + d;
+  // availability check
+  const timeToMinutes = t=>{ const [hh,mm]=t.split(':').map(Number); return hh*60+mm; };
+  function isTimeAvailableAdmin(date,startTime,duration,category,ignoreIndex=null){
+    const start=timeToMinutes(startTime), end=start+duration;
+    const bookings = JSON.parse(localStorage.getItem(LS_BOOKINGS)||'[]');
+    return !bookings.some((b,idx)=>{
+      if(ignoreIndex!==null && idx===ignoreIndex) return false;
+      if(b.date!==date || b.category!==category) return false;
+      const s = [...state.services.hair,...state.services.post].find(x=>x.name===b.service);
+      const d = s?.duration||30; const sStart=timeToMinutes(b.time); const sEnd=sStart+d;
       return start < sEnd && end > sStart;
     });
   }
 
-  // Genera horas disponibles para el servicio y fecha seleccionados
-  function updateAvailableTimesAdmin() {
-    const date = $("adminDate")?.value;
-    const sel = $("adminServiceSelect");
-    const timeSel = $("adminTime");
-    timeSel.innerHTML = `<option value="" disabled selected>Selecciona hora</option>`;
-    if (!date || !sel?.value) return;
-
+  // build available times
+  function updateAvailableTimesAdmin(){
+    const date = $('adminDate').value; const sel = $('adminServiceSelect'); const timeSel=$('adminTime');
+    timeSel.innerHTML = '<option value="" disabled selected>Selecciona hora</option>';
+    if(!date || !sel?.value) return;
     const duration = Number(sel.options[sel.selectedIndex]?.dataset?.duration) || 30;
     const category = sel.options[sel.selectedIndex]?.dataset?.category;
-
-    for (let h = CONFIG.OPEN_HOUR; h < CONFIG.CLOSE_HOUR; h++) {
-      for (let m = 0; m < 60; m += CONFIG.INTERVAL_MINUTES) {
-        const t = `${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")}`;
-        if (isTimeAvailableAdmin(date, t, duration, category)) {
-          const opt = document.createElement("option");
-          opt.value = t;
-          opt.textContent = t;
-          timeSel.appendChild(opt);
+    for(let h=CONFIG.OPEN_HOUR; h<CONFIG.CLOSE_HOUR; h++){
+      for(let m=0;m<60;m+=CONFIG.INTERVAL_MINUTES){
+        const t=`${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}`;
+        if(isTimeAvailableAdmin(date,t,duration,category)){
+          const opt=document.createElement('option'); opt.value=t; opt.textContent=t; timeSel.appendChild(opt);
         }
       }
     }
-    if (timeSel.options.length === 1) {
-      const opt = document.createElement("option");
-      opt.textContent = "No hay horas disponibles";
-      opt.disabled = true;
-      timeSel.appendChild(opt);
-    }
+    if(timeSel.options.length===1){ const opt=document.createElement('option'); opt.textContent='No hay horas disponibles'; opt.disabled=true; timeSel.appendChild(opt); }
   }
 
-  // Render tabla de citas
-  function renderCitas() {
-    const cont = $("citasList");
-    const q = $("searchBookings").value.trim().toLowerCase();
-    const cat = $("filterCategory").value;
+  // sorting state and helpers
+  let sortState = {key:null, asc:true};
+  function sortBy(key){ if(sortState.key===key) sortState.asc=!sortState.asc; else {sortState.key=key; sortState.asc=true;} renderCitas(); }
 
-    const bookings = JSON.parse(localStorage.getItem(CONFIG.LS_BOOKINGS) || "[]");
+  // render bookings with filters, safe date compare, pagination
+  let page = 1; const PAGE_SIZE = 50;
+  function renderCitas(){
+    const cont = $('citasList'); const q=$('searchBookings').value.trim().toLowerCase(); const cat=$('filterCategory').value;
+    const dateFrom = $('filterDateFrom').value; const dateTo = $('filterDateTo').value;
+    const bookings = JSON.parse(localStorage.getItem(LS_BOOKINGS)||'[]');
+    document.getElementById('totalCount').textContent = bookings.length; document.getElementById('totalCountFooter').textContent = bookings.length;
 
-    cont.innerHTML = "";
-    let rows = bookings.slice().sort((a, b) => new Date(`${a.date} ${a.time}`) - new Date(`${b.date} ${b.time}`));
-
-    rows = rows.filter(b => {
-      const matchText = `${b.name ?? ""} ${b.service ?? ""} ${b.email ?? ""} ${b.phone ?? ""}`.toLowerCase().includes(q);
-      const matchCat = cat ? b.category === cat : true;
-      return matchText && matchCat;
-    });
-
-    if (!rows.length) {
-      cont.innerHTML = `<tr><td colspan="7" class="text-center text-secondary">No hay citas registradas.</td></tr>`;
-      return;
+    let rows = bookings.slice();
+    // sort using local parse
+    if(sortState.key){
+      rows.sort((a,b)=>{
+        if(sortState.key==='date'){
+          const da=parseDateTimeLocal(a.date,a.time); const db=parseDateTimeLocal(b.date,b.time); return sortState.asc? da-db: db-da;
+        }
+        if(sortState.key==='time'){
+          const ta=a.time||''; const tb=b.time||''; return sortState.asc? ta.localeCompare(tb): tb.localeCompare(ta);
+        }
+        return 0;
+      });
+    } else {
+      rows.sort((a,b)=> parseDateTimeLocal(a.date,a.time) - parseDateTimeLocal(b.date,b.time));
     }
 
-    rows.forEach((b, i) => {
-      const s = [...state.services.hair, ...state.services.post].find(x => x.name === b.service);
+    rows = rows.filter(b=>{
+      const matchText = `${b.name||''} ${b.service||''} ${b.email||''} ${b.phone||''}`.toLowerCase().includes(q);
+      const matchCat = cat? b.category===cat : true;
+      let matchDate=true;
+      if(dateFrom) matchDate = matchDate && (parseDateLocal(b.date) >= parseDateLocal(dateFrom));
+      if(dateTo) matchDate = matchDate && (parseDateLocal(b.date) <= parseDateLocal(dateTo));
+      return matchText && matchCat && matchDate;
+    });
+
+    document.getElementById('showingCount').textContent = rows.length;
+    if(!rows.length){ cont.innerHTML = '<tr><td colspan="7" class="text-center text-secondary">No hay citas que coincidan con los filtros.</td></tr>'; return; }
+
+    // pagination (simple)
+    const totalPages = Math.max(1, Math.ceil(rows.length / PAGE_SIZE)); if(page>totalPages) page=totalPages;
+    const start = (page-1)*PAGE_SIZE; const paged = rows.slice(start, start+PAGE_SIZE);
+
+    cont.innerHTML = '';
+    paged.forEach((b, idx)=>{
+      const s = [...state.services.hair,...state.services.post].find(x=>x.name===b.service);
       const dur = s?.duration || 30;
-      const badge = b.category === "hair" ? `<span class="badge bg-info badge-cat">Peluquería</span>`
-                                          : `<span class="badge bg-warning text-dark badge-cat">Posticería</span>`;
+      const badge = b.category==='hair'? `<span class="badge bg-info badge-cat">Peluquería</span>` : `<span class="badge bg-warning text-dark badge-cat">Posticería</span>`;
       cont.innerHTML += `
         <tr>
-          <td>${b.name ?? "-"}</td>
-          <td>${b.service ?? "-"}</td>
-          <td>${b.date ?? "-"}</td>
-          <td>${b.time ?? "-"}</td>
+          <td style="max-width:220px">${escapeHtml(b.name||'-')}<div class="muted-td">${b.email?escapeHtml(b.email)+' • ':''}${b.phone?escapeHtml(b.phone):''}</div></td>
+          <td>${escapeHtml(b.service||'-')}</td>
+          <td>${escapeHtml(b.date||'-')}</td>
+          <td>${escapeHtml(b.time||'-')}</td>
           <td>${dur} min</td>
           <td>${badge}</td>
           <td>
-            <button class="btn btn-warning btn-sm me-2" onclick="editCita(${i})">Editar</button>
-            <button class="btn btn-danger btn-sm" onclick="deleteCita(${i})">Eliminar</button>
+            <button class="btn btn-warning btn-sm me-2" onclick="editCita(${start+idx})">Editar</button>
+            <button class="btn btn-danger btn-sm" onclick="deleteCita(${start+idx})">Eliminar</button>
           </td>
         </tr>`;
     });
+
+    // pager controls (simple)
+    const pagerRow = document.createElement('tr'); const pagerTd = document.createElement('td'); pagerTd.colSpan=7; pagerTd.className='text-center';
+    pagerTd.innerHTML = `${page} / ${totalPages} &nbsp; <button class="btn btn-sm btn-outline-light" ${page===1?'disabled':''} onclick="changePage(${page-1})">‹</button> <button class="btn btn-sm btn-outline-light" ${page===totalPages?'disabled':''} onclick="changePage(${page+1})">›</button>`;
+    pagerRow.appendChild(pagerTd); cont.appendChild(pagerRow);
+  }
+  window.changePage = p=>{ page = p; renderCitas(); }
+
+  // escape HTML
+  function escapeHtml(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+  // edit by index
+  window.editCita = function(i){
+    const bookings = JSON.parse(localStorage.getItem(LS_BOOKINGS)||'[]'); const b = bookings[i]; if(!b) return alert('Cita no encontrada');
+    $('editIndex').value = i; $('bookingModalTitle').textContent='Editar cita'; $('adminName').value=b.name||''; $('adminEmail').value=b.email||''; $('adminPhone').value=b.phone||'';
+    $('adminServiceType').value = b.category==='hair'? 'peluqueria':'posticeria'; fillServiceOptionsAdmin(); $('adminServiceSelect').value = b.service||''; $('adminDate').value=b.date||'';
+    $('adminTime').innerHTML = '<option value="" disabled selected>Selecciona hora</option>'; updateAvailableTimesAdmin(); $('adminTime').value=b.time||''; $('adminError').classList.add('d-none'); new bootstrap.Modal($('bookingModal')).show();
   }
 
-  // Render tabla de compras
-  const LS_ORDERS = "orders";
-  function renderOrders() {
-    const cont = $("ordersList");
-    const q = $("searchOrders").value.trim().toLowerCase();
-    const orders = JSON.parse(localStorage.getItem(LS_ORDERS) || "[]");
-
-    cont.innerHTML = "";
-    let rows = orders.slice().filter(o => `${o.product ?? ""} ${o.name ?? ""}`.toLowerCase().includes(q));
-
-    if (!rows.length) {
-      cont.innerHTML = `<tr><td colspan="4" class="text-center text-secondary">No hay compras aún.</td></tr>`;
-      return;
-    }
-
-    rows.forEach((o, i) => {
-      cont.innerHTML += `
-        <tr>
-          <td>${o.product ?? "-"}</td>
-          <td>${o.price ?? 0}€</td>
-          <td>${o.name ?? "-"}</td>
-          <td><button class="btn btn-danger btn-sm" onclick="deleteOrder(${i})">Eliminar</button></td>
-        </tr>`;
-    });
+  // save
+  window.saveAdminBooking = async function(){
+    const idx = $('editIndex').value; const name=$('adminName').value.trim(); const email=$('adminEmail').value.trim(); const phone=$('adminPhone').value.trim();
+    const serviceSel=$('adminServiceSelect'); const service=serviceSel.value; const category=serviceSel.options[serviceSel.selectedIndex]?.dataset?.category; const duration=Number(serviceSel.options[serviceSel.selectedIndex]?.dataset?.duration)||30;
+    const date=$('adminDate').value; const time=$('adminTime').value; if(!name||!service||!category||!date||!time) return alert('Completa los campos obligatorios.');
+    const ignoreIndex = idx!==''?Number(idx):null; if(!isTimeAvailableAdmin(date,time,duration,category,ignoreIndex)){ $('adminError').classList.remove('d-none'); return; }
+    const bookings = JSON.parse(localStorage.getItem(LS_BOOKINGS)||'[]'); const booking = { name,email,phone,service,date,time,category };
+    if(idx!=='') bookings[Number(idx)] = booking; else bookings.push(booking); localStorage.setItem(LS_BOOKINGS, JSON.stringify(bookings)); renderCitas(); bootstrap.Modal.getInstance($('bookingModal')).hide(); $('bookingFormAdmin').reset(); $('editIndex').value=''; $('bookingModalTitle').textContent='Nueva cita'; $('adminError').classList.add('d-none');
   }
+  // wire save button
+  $('saveBtn').addEventListener('click', saveAdminBooking);
 
-  // Abrir nueva cita
-  window.openNew = function openNew() {
-    $("bookingModalTitle").textContent = "Nueva cita";
-    $("bookingFormAdmin").reset();
-    $("editIndex").value = "";
-    $("adminError").classList.add("d-none");
-    $("adminServiceSelect").innerHTML = `<option value="" disabled selected>Elige un servicio...</option>`;
-    $("adminTime").innerHTML = `<option value="" disabled selected>Selecciona hora</option>`;
-  }
+  // delete
+  window.deleteCita = function(i){ const bookings=JSON.parse(localStorage.getItem(LS_BOOKINGS)||'[]'); if(!confirm('¿Eliminar esta cita?')) return; bookings.splice(i,1); localStorage.setItem(LS_BOOKINGS, JSON.stringify(bookings)); renderCitas(); }
 
-  // Editar cita (carga selects coherentes)
-  window.editCita = function editCita(i) {
-    const bookings = JSON.parse(localStorage.getItem(CONFIG.LS_BOOKINGS) || "[]");
-    const b = bookings[i];
+  // orders
+  function renderOrders(){ const cont=$('ordersList'); const q=$('searchOrders').value.trim().toLowerCase(); const orders=JSON.parse(localStorage.getItem(LS_ORDERS)||'[]'); cont.innerHTML=''; const rows=orders.filter(o=>(`${o.product||''} ${o.name||''}`).toLowerCase().includes(q)); if(!rows.length){ cont.innerHTML='<tr><td colspan="4" class="text-center text-secondary">No hay compras aún.</td></tr>'; return;} rows.forEach((o,i)=>{ cont.innerHTML+=`<tr><td>${escapeHtml(o.product||'-')}</td><td>${escapeHtml(o.price||0)}€</td><td>${escapeHtml(o.name||'-')}</td><td><button class="btn btn-danger btn-sm" onclick="deleteOrder(${i})">Eliminar</button></td></tr>`; }); }
+  window.deleteOrder=function(i){ const orders=JSON.parse(localStorage.getItem(LS_ORDERS)||'[]'); if(!confirm('¿Eliminar compra?')) return; orders.splice(i,1); localStorage.setItem(LS_ORDERS, JSON.stringify(orders)); renderOrders(); }
 
-    $("editIndex").value = i;
-    $("bookingModalTitle").textContent = "Editar cita";
+  // presets
+  window.setPreset=function(p){ const today=new Date(); const fmt=d=>d.toISOString().slice(0,10); if(p==='today'){ $('filterDateFrom').value=fmt(today); $('filterDateTo').value=fmt(today);} else if(p==='next7'){ const end=new Date(); end.setDate(today.getDate()+7); $('filterDateFrom').value=fmt(today); $('filterDateTo').value=fmt(end);} renderCitas(); }
+  window.clearDateFilters=function(){ $('filterDateFrom').value=''; $('filterDateTo').value=''; renderCitas(); }
 
-    $("adminName").value = b.name ?? "";
-    $("adminEmail").value = b.email ?? "";
-    $("adminPhone").value = b.phone ?? "";
+  // bulk delete past
+  window.bulkDeletePast=function(){ if(!confirm('Eliminar todas las citas con fecha anterior a hoy?')) return; const today=new Date(); const todayStart = new Date(today.getFullYear(),today.getMonth(),today.getDate()); const bookings=JSON.parse(localStorage.getItem(LS_BOOKINGS)||'[]'); const kept=bookings.filter(b=> parseDateLocal(b.date) >= todayStart); localStorage.setItem(LS_BOOKINGS, JSON.stringify(kept)); renderCitas(); }
 
-    // Mapear categoría interna a tipo externo del select
-    const typeVal = b.category === "hair" ? "peluqueria" : "posticeria";
-    $("adminServiceType").value = typeVal;
-    fillServiceOptionsAdmin(); // carga servicios según tipo
+  // duplicate last
+  $('duplicateBtn').addEventListener('click', ()=>{ const bookings=JSON.parse(localStorage.getItem(LS_BOOKINGS)||'[]'); if(!bookings.length) return alert('No hay citas para duplicar'); const last = bookings[bookings.length-1]; const copy = {...last}; // push next day by default
+    const d=parseDateLocal(copy.date); d.setDate(d.getDate()+1); copy.date = asISO(d); bookings.push(copy); localStorage.setItem(LS_BOOKINGS, JSON.stringify(bookings)); renderCitas(); });
 
-    $("adminServiceSelect").value = b.service ?? "";
+  // export filtered
+  function exportCSV(rows, filename='citas_export.csv'){ if(!rows.length) return alert('No hay datos para exportar'); const headers=['name','email','phone','service','date','time','category']; const csv=[headers.join(',')].concat(rows.map(b=> headers.map(h=>`"${(b[h]||'').toString().replace(/"/g,'""')}"`).join(','))).join(''); const blob=new Blob([csv],{type:'text/csv;charset=utf-8;'}); const url=URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download=filename; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url); }
+  $('exportFiltered').addEventListener('click', ()=>{ const bookings=JSON.parse(localStorage.getItem(LS_BOOKINGS)||'[]'); const q=$('searchBookings').value.trim().toLowerCase(); const cat=$('filterCategory').value; const dateFrom=$('filterDateFrom').value; const dateTo=$('filterDateTo').value; const rows=bookings.filter(b=>{ const matchText = `${b.name||''} ${b.service||''} ${b.email||''} ${b.phone||''}`.toLowerCase().includes(q); const matchCat = cat? b.category===cat: true; let matchDate=true; if(dateFrom) matchDate = matchDate && (parseDateLocal(b.date) >= parseDateLocal(dateFrom)); if(dateTo) matchDate = matchDate && (parseDateLocal(b.date) <= parseDateLocal(dateTo)); return matchText && matchCat && matchDate; }); exportCSV(rows, `citas_filtradas_${new Date().toISOString().slice(0,10)}.csv`); });
 
-    $("adminDate").value = b.date ?? "";
-    $("adminTime").innerHTML = `<option value="" disabled selected>Selecciona hora</option>`;
-    updateAvailableTimesAdmin();
-    $("adminTime").value = b.time ?? "";
+  // small util: parseDateTimeLocal earlier used
 
-    $("adminError").classList.add("d-none");
-    new bootstrap.Modal($("bookingModal")).show();
-  }
+  // events
+  $('searchBookings').addEventListener('input', ()=>{ page=1; renderCitas(); });
+  $('filterCategory').addEventListener('change', ()=>{ page=1; renderCitas(); });
+  $('filterDateFrom').addEventListener('change', ()=>{ page=1; renderCitas(); });
+  $('filterDateTo').addEventListener('change', ()=>{ page=1; renderCitas(); });
+  $('searchOrders').addEventListener('input', renderOrders);
+  $('adminServiceType').addEventListener('change', fillServiceOptionsAdmin);
+  $('adminServiceSelect').addEventListener('change', updateAvailableTimesAdmin);
+  $('adminDate').addEventListener('change', updateAvailableTimesAdmin);
 
-  // Guardar creación/edición
-  window.saveAdminBooking = function saveAdminBooking() {
-    const idx   = $("editIndex").value;
-    const name  = $("adminName").value.trim();
-    const email = $("adminEmail").value.trim();
-    const phone = $("adminPhone").value.trim();
+  // storage sync
+  window.addEventListener('storage', e=>{ if(e.key===LS_BOOKINGS) renderCitas(); if(e.key===LS_ORDERS) renderOrders(); });
 
-    const serviceSel = $("adminServiceSelect");
-    const service  = serviceSel.value;
-    const category = serviceSel.options[serviceSel.selectedIndex]?.dataset?.category;
-    const duration = Number(serviceSel.options[serviceSel.selectedIndex]?.dataset?.duration) || 30;
-    const date  = $("adminDate").value;
-    const time  = $("adminTime").value;
+  // init
+  await loadServicesForAdmin(); renderCitas(); renderOrders();
 
-    if (!name || !service || !category || !date || !time) {
-      alert("Completa los campos obligatorios.");
-      return;
-    }
-
-    const ignoreIndex = idx !== "" ? Number(idx) : null;
-    const ok = isTimeAvailableAdmin(date, time, duration, category, ignoreIndex);
-    if (!ok) {
-      $("adminError").classList.remove("d-none");
-      return;
-    }
-
-    const LS = CONFIG.LS_BOOKINGS;
-    const bookings = JSON.parse(localStorage.getItem(LS) || "[]");
-    const booking = { name, email, phone, service, date, time, category };
-
-    if (idx !== "") bookings[Number(idx)] = booking;
-    else bookings.push(booking);
-
-    localStorage.setItem(LS, JSON.stringify(bookings));
-    renderCitas();
-
-    const modalEl = $("bookingModal");
-    bootstrap.Modal.getInstance(modalEl).hide();
-    $("bookingFormAdmin").reset();
-    $("editIndex").value = "";
-    $("bookingModalTitle").textContent = "Nueva cita";
-    $("adminError").classList.add("d-none");
-  }
-
-  // Eliminar cita
-  window.deleteCita = function deleteCita(i) {
-    const bookings = JSON.parse(localStorage.getItem(CONFIG.LS_BOOKINGS) || "[]");
-    if (!confirm("¿Eliminar esta cita?")) return;
-    bookings.splice(i, 1);
-    localStorage.setItem(CONFIG.LS_BOOKINGS, JSON.stringify(bookings));
-    renderCitas();
-  }
-
-  // Eliminar compra
-  window.deleteOrder = function deleteOrder(i) {
-    const orders = JSON.parse(localStorage.getItem(LS_ORDERS) || "[]");
-    if (!confirm("¿Eliminar compra?")) return;
-    orders.splice(i, 1);
-    localStorage.setItem(LS_ORDERS, JSON.stringify(orders));
-    renderOrders();
-  }
-
-  // Eventos UI
-  $("searchBookings").addEventListener("input", renderCitas);
-  $("filterCategory").addEventListener("change", renderCitas);
-  $("searchOrders").addEventListener("input", renderOrders);
-  $("adminServiceType").addEventListener("change", fillServiceOptionsAdmin);
-  $("adminServiceSelect").addEventListener("change", updateAvailableTimesAdmin);
-  $("adminDate").addEventListener("change", updateAvailableTimesAdmin);
-
-  // Sincronización cross-tab
-  window.addEventListener("storage", (e) => {
-    if (e.key === CONFIG.LS_BOOKINGS) renderCitas();
-    if (e.key === LS_ORDERS) renderOrders();
-  });
-
-  // Inicialización
-  await loadServicesForAdmin();
-  renderCitas();
-  renderOrders();
-
-  // Logout accesible en el scope global
-  window.logout = function logout() {
-    sessionStorage.removeItem("adminAuth");
-    window.location.href = "index.html";
-  }
+  // helper for logout
+  window.logout = function(){ sessionStorage.removeItem('adminAuth'); window.location.href='index.html'; }
 </script>
 </body>
 </html>
