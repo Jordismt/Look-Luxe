@@ -3,7 +3,7 @@
     "id": 1,
     "name": "Extensiones de Cabello",
     "description": "Añade longitud y volumen a tu cabello con nuestras extensiones de alta calidad.",
-    "price": 120,
+    "price": 140,
     "img": "img/img_srv/extensiones.jpg",
     "duration": 90
   },
@@ -11,22 +11,22 @@
     "id": 2,
     "name": "Pelucas Personalizadas",
     "description": "Pelucas hechas a medida para adaptarse perfectamente a tu estilo y rostro.",
-    "price": 250,
+    "price": "desde 250",
     "img": "img/img_srv/pelucas.jpg",
     "duration": 120
   },
   {
     "id": 3,
     "name": "Prótesis Capilares",
-    "description": "Soluciones de posticería para pérdida de cabello parcial o total.",
-    "price": 300,
+    "description": "Soluciones de posticería para pérdida de cabello parcial o total; Consultar",
+    "price": "desde 250",
     "img": "img/img_srv/protesis.jpg",
-    "duration": 150
+    "duration": null
   },
   {
     "id": 4,
     "name": "Mantenimiento de Extensiones",
-    "description": "Cuidado y mantenimiento profesional para tus extensiones.",
+    "description": "Cuidado y mantenimiento profesional para tus extensiones",
     "price": 50,
     "img": "img/img_srv/mant_ext.jpg",
     "duration": 30
@@ -36,7 +36,7 @@
     "id": 5,
     "name": "Extensiones Adhesivas / Cosidas",
     "price": "desde 80",
-    "duration": 35,
+    "duration": null,
     "img": "img/img_srv/default.jpg",
     "description": "Desde 80€; Consultar según tipo"
   },

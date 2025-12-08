@@ -19,14 +19,13 @@
   "hours": {
     "keywords": ["hora", "horario", "abren", "cierran", "abierto", "abren hoy", "cerrado", "cuando abrís", "cuando cerraís"],
     "responses": [
-      "Nuestro horario es:\n🕒 Lunes a Viernes: 10:00–20:00\n🕒 Sábado: 10:00–14:00",
-      "Abrimos de lunes a viernes de 10 a 20, y sábados de 10 a 14.",
-      "Estamos abiertos de lunes a viernes de 10h a 20h, y los sábados de 10h a 14h.",
+      "Nuestro horario es:\n🕒 Martes a Viernes: 9:30–13:30 / 15:00-19:00\n🕒 Sábado: 9:00–14:00",
+      "Abrimos de Martes a Viernes: 9:30–13:30 / 15:00-19:00\n🕒 Sábado: 9:00–14:00",
+      "Estamos abiertos de Martes a Viernes: 9:30–13:30 / 15:00-19:00\n🕒 Sábado: 9:00–14:00",
       "De lunes a viernes: 10–20h\nSábado: 10–14h 😊",
-      "Hoy estamos abiertos dentro de nuestro horario habitual.",
-      "Puedes visitarnos de 10:00 a 20:00 entre semana.",
-      "Entre semana abrimos todo el día hasta las 20h.",
-      "Los sábados solo abrimos por la mañana hasta las 14h."
+      "Puedes visitarnos de Martes a Viernes: 9:30–13:30 / 15:00-19:00\n🕒 Sábado: 9:00–14:00",
+      "Entre semana abrimos todo el día de Martes a Viernes: 9:30–13:30 / 15:00-19:00\n🕒 Sábado: 9:00–14:00"
+
     ]
   },
 
