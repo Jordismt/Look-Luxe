@@ -1,35 +1,76 @@
 [
-
   {
-    "id": 2,
-    "name": "Acondicionador Reparador",
-    "price": 14.00,
-    "img": "img/img_prd/acondicionador.jpg",
-    "description": "Repara las puntas abiertas y aporta suavidad extrema.",
+    "id": 1,
+    "name": "Melu champú Davines",
+    "price": 26.5,
+    "img": "img/img_prd/champu-dav.jpg",
+    "description": "Melu Champú Davines, para cabello largo o deteriorado. Es antirotura, aporta brillo, efecto de seda y luminosidad.",
     "stock": 8
   },
-  {
-    "id": 3,
-    "name": "Aceite Capilar Luxe",
-    "price": 18.00,
-    "img": "img/img_prd/aceite_cap.jpg",
-    "description": "Aceite premium que aporta brillo y reduce el frizz.",
-    "stock": 5
+    {
+    "id": 6,
+    "name": "Melu Acondicionador Davines",
+    "price": 32.00,
+    "img": "img/img_prd/masc-dav.jpg",
+    "description": "Melu Acondicionador Davines, para cabello largo o dañado. Hidrata el cabello, nutre las puntas y previene la rotura.",
+    "stock": 8
   },
-  {
+    {
+    "id": 5,
+    "name": "Spray Protector Térmico",
+    "price": 36,
+    "img": "img/img_prd/spray.webp",
+    "description": "Protege el cabello del calor hasta 230ºC.",
+    "stock": 12
+  },
+      {
     "id": 4,
-    "name": "Mascarilla Regeneradora",
+    "name": "Nurishing Shampoo",
+    "price":35,
+    "img": "img/img_prd/nur-cham-dav.jpg",
+    "description": "Champú nutritivo para cueros cabelludos deshidratados y cabellos secos debilitados.",
+    "stock": 7
+  },
+    {
+    "id": 7,
+    "name": "Mascarilla Nutritiva",
     "price": 16.50,
     "img": "img/img_prd/masc_reg.webp",
     "description": "Tratamiento profundo para revitalizar el cabello.",
     "stock": 7
   },
   {
-    "id": 5,
-    "name": "Spray Protector Térmico",
-    "price": 11.90,
-    "img": "img/img_prd/spray.webp",
-    "description": "Protege el cabello del calor hasta 230ºC.",
-    "stock": 12
+    "id": 2,
+    "name": "Acondicionador Reparador",
+    "price": 14.00,
+    "img": "img/img_prd/acondicionador.jpg",
+    "description": "Acondicionador para cabellos normales y/o secos.",
+    "stock": 8
+  },
+    {
+    "id": 8,
+    "name": "Champú REVLON Restart Color",
+    "price": 18.00,
+    "img": "img/img_prd/rev-cham-col.jpg",
+    "description": "Protege el color de tu cabello frente a la oxidación del paso del tiempo.",
+    "stock": 5
+  },
+    {
+    "id": 9,
+    "name": "Acondicionador REVLON Restart Color",
+    "price": 15.00,
+    "img": "img/img_prd/rev-ac-col.jpg",
+    "description": "Protege el color de tu cabello frente a la oxidación del paso del tiempo.",
+    "stock": 5
+  },
+  {
+    "id": 3,
+    "name": "Aceite Capilar Orofluido elexir, serum-Revlon Profesional",
+    "price": 14.00,
+    "img": "img/img_prd/aceite_cap.jpg",
+    "description": "Aceite capilar con aceite de argan; Nutre, suaviza y fortalece el cabello.",
+    "stock": 5
   }
+
+
 ]

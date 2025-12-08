@@ -281,6 +281,77 @@ header {
 
 
 /* -------------------------
+   CARRUSEL DE MARCAS MEJORADO
+------------------------- */
+.brands-carousel {
+  overflow: hidden;
+  position: relative;
+  background: #111; /* fondo oscuro elegante */
+  padding: 3rem 0;
+}
+
+.brands-carousel h2 {
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin-bottom: 2rem;
+}
+
+.carousel-track {
+  display: flex;
+  width: max-content; /* se adapta al contenido duplicado */
+}
+
+.carousel-slide {
+  display: flex;
+  gap: 4rem; /* espacio entre logos */
+  animation: scroll 30s linear infinite;
+  align-items: center;
+}
+
+.brand-logo {
+  display: block;
+  height: 80px;
+  width: auto;
+  object-fit: contain; /* asegura que la imagen mantenga proporción */
+  
+  opacity: 0.85;
+  transition: transform 0.3s, opacity 0.3s;
+
+  border-radius: 8px;
+}
+
+.brand-logo:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* duplicar contenido con CSS (opcional) */
+.carousel-slide > * {
+  flex-shrink: 0;
+}
+
+/* Responsive */
+@media(max-width:992px){
+  .carousel-slide { gap: 3rem; }
+  .brand-logo { height: 70px; }
+}
+
+@media(max-width:768px){
+  .carousel-slide { gap: 2rem; }
+  .brand-logo { height: 60px; }
+}
+
+@media(max-width:480px){
+  .carousel-slide { gap: 1.5rem; }
+  .brand-logo { height: 50px; }
+}
+
+/* -------------------------
    SECCIONES
 ------------------------- */
 section {
