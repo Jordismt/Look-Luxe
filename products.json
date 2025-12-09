@@ -70,6 +70,22 @@
     "img": "img/img_prd/aceite_cap.jpg",
     "description": "Aceite capilar con aceite de argan; Nutre, suaviza y fortalece el cabello.",
     "stock": 5
+  },
+  {
+    "id": 10,
+    "name": "Cepillo Eurosil Púas Goma Fuelle Nylon Grande",
+    "price": 5.00,
+    "img": "img/img_prd/cep1.png",
+    "description": "Cepillo profesional, púas goma fuelle nylos tamaño grande.",
+    "stock": 5
+  },
+  {
+    "id": 11,
+    "name": "Peine Eurostil Púas Nylos Profesional",
+    "price": 15.00,
+    "img": "img/img_prd/cep2.png",
+    "description": "Peine Profesional de peluquero, batidor, con púa de nylon profesional.",
+    "stock": 5
   }
 
 
