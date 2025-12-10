@@ -37,7 +37,7 @@
     "name": "Extensiones Adhesivas / Cosidas",
     "price": "desde 80",
     "duration": null,
-    "img": "img/img_srv/default.jpg",
+    "img": "img/img_srv/ext_ad_cos.jpg",
     "description": "Desde 80€; Consultar según tipo"
   },
   {
@@ -45,7 +45,7 @@
     "name": "Confección de Peluca a Medida",
     "price": "desde 250",
     "duration": null,
-    "img": "img/img_srv/default.jpg",
+    "img": "img/img_srv/pel_med.jpg",
     "description": "Personalizada; Cita previa con asesoramiento"
   },
   {
@@ -53,7 +53,7 @@
     "name": "Mantenimiento de Peluca",
     "price": "desde 25",
     "duration": 60,
-    "img": "img/img_srv/default.jpg",
+    "img": "img/img_srv/mant_pel.jpg",
     "description": "Lavado, secado y ajuste según material (25–60€)"
   }
 ]

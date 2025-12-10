@@ -46,7 +46,7 @@
     "name": "Corte Cabello + Barba",
     "price": 20,
     "duration": 45,
-    "img": "img/img_srv/barba.jpg",
+    "img": "img/img_srv/cab+barba.jpg",
     "description": "Lavado, corte, secado y corte de barba"
   },
     {
@@ -54,7 +54,7 @@
     "name": "Corte flequillo mujer",
     "price": 7,
     "duration": 10,
-    "img": "img/img_srv/",
+    "img": "img/img_srv/flequillo_m.jpg",
     "description": "Corte de flequillo mujer"
   },
   {
@@ -62,7 +62,7 @@
     "name": "Lavado + Secado Mujer",
     "price": "desde 22",
     "duration": 40,
-    "img": "img/img_srv/default.jpg",
+    "img": "img/img_srv/lav+sec.jpg",
     "description": "Cabello corto: 22€; Cabello medio: 24,50€; Cabello largo: 27,50€"
   },
   {
@@ -70,7 +70,7 @@
     "name": "Lavado + Peinado (Ondas/Acabado especial)",
     "price": "desde 40",
     "duration": 60,
-    "img": "img/img_srv/default.jpg",
+    "img": "img/img_srv/ondas_m.jpg",
     "description": "Cabello corto: 40€; Cabello medio: 42,50€; Cabello largo: 45,50€"
   },
   {
@@ -78,7 +78,7 @@
     "name": "Lavado + Corte + Secado Mujer",
     "price": "desde 42",
     "duration": 75,
-    "img": "img/img_srv/default.jpg",
+    "img": "img/img_srv/lav+cor+sec.jpg",
     "description": "Incluye lavado, corte y secado liso, con forma, volumen...;Cabello corto: 42€; Cabello medio: 44,50€; Cabello largo: 47,50€"
   },
     {
@@ -86,7 +86,7 @@
     "name": "Lavado + Tratamiento + Secado Mujer",
     "price": "desde 42",
     "duration": 60,
-    "img": "img/img_srv/default.jpg",
+    "img": "img/img_srv/lav+trat+sec.jpg",
     "description": "Incluye lavado, tratamiento y secado ;Cabello corto: 42€; Cabello medio: 44,50€; Cabello largo: 47,50€"
   },
   {
@@ -94,7 +94,7 @@
     "name": "Lavado + Tratamiento + Corte + Secado Mujer",
     "price": "desde 60",
     "duration": 75,
-    "img": "img/img_srv/default.jpg",
+    "img": "img/img_srv/lav+trat+cort.jpg",
     "description": "Incluye lavado, tratamiento, corte y secado ;Cabello corto: 60€; Cabello medio: 63,50€; Cabello largo: 66€"
   },
   {
@@ -102,7 +102,7 @@
     "name": "Peinados Especiales (Bodas, Comuniones, Eventos)",
     "price": "desde 50",
     "duration": 60,
-    "img": "img/logo.PNG",
+    "img": "img/img_srv/pein-esp.jpg",
     "description": "Entre 50€ y 250€; Incluye hasta 3 pruebas de peinado en servicios superiores a 150€; Con cita previa"
   },
   {
@@ -110,7 +110,7 @@
     "name": "Recogido con Ondas",
     "price": "desde 50",
     "duration": null,
-    "img": "img/img_srv/default.jpg",
+    "img": "img/img_srv/rec-ondas.jpg",
     "description": "Precio entre 50€ y 120€; Consultar según estilo"
   },
   {
@@ -118,7 +118,7 @@
     "name": "Tinte de Raíz + Lavado + Secado",
     "price": "desde 60",
     "duration": 90,
-    "img": "img/img_srv/default.jpg",
+    "img": "img/img_srv/tint_raiz.jpg",
     "description": "Tinte de Raíz con Lavado y Secado incluidos; Cabello corto: 60€; Cabello medio: 62,50€; Cabello largo: 65,50€"
   },
   {
@@ -126,7 +126,7 @@
     "name": "Tinte de Raíz + Lavado + Corte + Secado",
     "price": "desde 74",
     "duration": 110,
-    "img": "img/img_srv/default.jpg",
+    "img": "img/img_srv/tint_raiz.jpg",
     "description": "Tinte de Raíz con Lavado, Corte y Secado incluidos; Cabello corto: 74€; Cabello medio: 76,50€; Cabello largo: 79,50€"
   },
   {
@@ -134,7 +134,7 @@
     "name": "Tinte de Raíz + Lavado + Tratamiento + Secado",
     "price": "desde 80",
     "duration": 115,
-    "img": "img/img_srv/default.jpg",
+    "img": "img/img_srv/tint_raiz.jpg",
     "description": "Tinte de Raíz con Lavado, Tratamiento y Secado incluidos; Cabello corto: 80€; Cabello medio: 82,50€; Cabello largo: 85,50€"
   },
   {
@@ -142,15 +142,23 @@
     "name": "Tinte de Raíz + Lavado + Tratamiento + Corte + Secado",
     "price": "desde 94",
     "duration": 140,
-    "img": "img/img_srv/default.jpg",
+    "img": "img/img_srv/tint_raiz.jpg",
     "description": "Tinte de Raíz con Lavado, Tratamiento, Corte y Secado incluidos; Cabello corto: 94€; Cabello medio: 96,50€; Cabello largo: 99,50€"
+  },
+    {
+    "id": 18,
+    "name": "Retoque de Raíz + Tratamiento + Secado",
+    "price": 72.5,
+    "duration": 100,
+    "img": "img/img_srv/tint_raiz.jpg",
+    "description": "Retoque de raíz, tratamiento capilar y secado"
   },
   {
     "id": 15,
     "name": "Color Completo + Lavado + Secado",
     "price": "desde 77,50",
     "duration": 90,
-    "img": "img/img_srv/default.jpg",
+    "img": "img/img_srv/col_comp.jpg",
     "description": "Color completo con Lavado y Secado incluidos; Cabello corto: 77,50€; Cabello medio: 80€; Cabello largo: 83,50€"
   },
   {
@@ -158,7 +166,7 @@
     "name": "Color Completo + Lavado + Corte + Secado",
     "price": "desde 91,50",
     "duration": 115,
-    "img": "img/img_srv/default.jpg",
+    "img": "img/img_srv/col_comp.jpg",
     "description": "Color completo con Lavado, corte y Secado incluidos; Cabello corto: 91,50€; Cabello medio: 94€; Cabello largo: 97€"
   },
   {
@@ -166,7 +174,7 @@
     "name": "Color Completo + Tratamiento express + Secado",
     "price": 93,
     "duration": 90,
-    "img": "img/img_srv/default.jpg",
+    "img": "img/img_srv/col_comp.jpg",
     "description": "Color completo con tratamiento express y Secado incluidos"
   },
   {
@@ -174,7 +182,7 @@
     "name": "Color Completo + Tratamiento intenso + Lavado + Secado",
     "price": "desde 97.50",
     "duration": 120,
-    "img": "img/img_srv/default.jpg",
+    "img": "img/img_srv/col_comp.jpg",
     "description": "Color completo mas lavado con tratamiento intenso y Secado incluidos; Cabello corto: 97,50€; Cabello medio: 100€; Cabello largo: 103€"
   },
   {
@@ -182,24 +190,17 @@
     "name": "Matiz / Baño de Color",
     "price": 32.5,
     "duration": 30,
-    "img": "img/img_srv/default.jpg",
+    "img": "img/img_srv/matiz.jpg",
     "description": "Matiz o baño de color"
   },
 
-  {
-    "id": 18,
-    "name": "Retoque de Raíz + Tratamiento + Secado",
-    "price": 72.5,
-    "duration": 100,
-    "img": "img/img_srv/default.jpg",
-    "description": "Retoque de raíz, tratamiento capilar y secado"
-  },
+
   {
     "id": 19,
     "name": "Keratina",
     "price": "consultar",
     "duration": null,
-    "img": "img/img_srv/default.jpg",
+    "img": "img/img_srv/keratina.jpg",
     "description": "Precio variable según tipo y cantidad de cabello; Cita previa con asesoramiento"
   },
   {
@@ -207,7 +208,7 @@
     "name": "Antiencrespamiento",
     "price": "desde 55",
     "duration": null,
-    "img": "img/img_srv/default.jpg",
+    "img": "img/img_srv/antiencrespamiento.jpg",
     "description": "Cabello corto: 55€; Cabello medio: 65€; Cabello largo: 80€; Requiere cita previa con asesoramiento"
   },
   {
@@ -215,7 +216,7 @@
     "name": "Tratamiento Express",
     "price": 13.50,
     "duration": 15,
-    "img": "img/img_srv/default.jpg",
+    "img": "img/img_srv/trat.jpg",
     "description": "Tratamiento personalizado según necesidad del cabello"
   },
   {
@@ -223,7 +224,7 @@
     "name": "Tratamiento Intenso",
     "price": 28,
     "duration": 25,
-    "img": "img/img_srv/default.jpg",
+    "img": "img/img_srv/trat.jpg",
     "description": "Tratamiento de hidratación o reconstrucción"
   },
   {
@@ -231,7 +232,7 @@
     "name": "Ritual Capilar",
     "price": 45,
     "duration": 45,
-    "img": "img/img_srv/default.jpg",
+    "img": "img/img_srv/rit_cap.jpg",
     "description": "Ritual con masaje en el cuero cabelludo y cuello, aceites esenciales..."
   },
   {
@@ -239,7 +240,7 @@
     "name": "1 Trenza Pequeña",
     "price": 8,
     "duration": 10,
-    "img": "img/img_srv/default.jpg",
+    "img": "img/img_srv/trenza_p.jpg",
     "description": "1 trenza pequeña"
   },
   {
@@ -247,7 +248,7 @@
     "name": "2 Trenzas Pequeñas",
     "price": 16,
     "duration": 15,
-    "img": "img/img_srv/default.jpg",
+    "img": "img/img_srv/trenza_p.jpg",
     "description": "2 trenzas pequeñas"
   },
   {
@@ -255,7 +256,7 @@
     "name": "4 Trenzas Pequeñas",
     "price": 28,
     "duration": 25,
-    "img": "img/img_srv/default.jpg",
+    "img": "img/img_srv/trenza_p.jpg",
     "description": "4 trenzas pequeñas"
   },
   {
@@ -263,7 +264,7 @@
     "name": "Trenzas Boxeadoras",
     "price": 30,
     "duration": 20,
-    "img": "img/img_srv/default.jpg",
+    "img": "img/img_srv/trenza_box.jpg",
     "description": "2 trenzas de raíz (boxeadoras)"
   },
   {
@@ -271,7 +272,7 @@
     "name": "Trenzas Boxeadoras con Kanekalon",
     "price": 45,
     "duration": 40,
-    "img": "img/img_srv/default.jpg",
+    "img": "img/img_srv/trenza_box_k.jpg",
     "description": "2 trenzas de raíz con kanekalon"
   },
   {
@@ -279,7 +280,7 @@
     "name": "Trenzas Africanas",
     "price": "desde 100",
     "duration": null,
-    "img": "img/img_srv/default.jpg",
+    "img": "img/img_srv/trenzas_afri.jpg",
     "description": "Trenzas africanas personalizadas; Corto: 100€; Medio: 125€; Largo: 150€"
   },
   {
@@ -287,7 +288,7 @@
     "name": "Otros Tipos de Trenzas",
     "price": "Consultar",
     "duration": null,
-    "img": "img/img_srv/default.jpg",
+    "img": "img/img_srv/trenzas_otro.jpg",
     "description": "Consultar precio"
   }
 ]

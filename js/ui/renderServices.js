@@ -6,6 +6,21 @@ import { renderBookings } from "./renderBookings.js";
 
 export async function renderServices() {
   const serviceListEl = $("service-list");
+    if (!document.getElementById("service-img-style")) {
+    const style = document.createElement("style");
+    style.id = "service-img-style";
+    style.textContent = `
+      .service-card img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+        background: #f0f0f0;
+        padding: 10px;
+        max-height: 250px;
+      }
+    `;
+    document.head.appendChild(style);
+  }
   const typeSelect = $("serviceType");
   const serviceSelect = $("serviceSelect");
   if (!serviceListEl && !typeSelect && !serviceSelect) return;
