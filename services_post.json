@@ -51,9 +51,9 @@
   {
     "id": 7,
     "name": "Mantenimiento de Peluca",
-    "price": "desde 25",
+    "price": "desde 30",
     "duration": 60,
-    "img": "img/img_srv/mant_pel.jpg",
-    "description": "Lavado, secado y ajuste según material (25–60€)"
+    "img": "img/img_srv/pelucas_mant.jpg",
+    "description": "Lavado, secado y ajuste según material (30-70€)"
   }
 ]
